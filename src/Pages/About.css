@@ -1,0 +1,156 @@
+/* ============ ABOUT PAGE ============ */
+.about-page {
+    padding: 120px 24px;
+    min-height: 100vh;
+    background-color: var(--color-bg);
+    transition: var(--transition-theme);
+  }
+  
+  .about-container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  /* ============ HEADER ============ */
+  .about-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  
+  .about-title {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 16px;
+  }
+  
+  .title-bracket {
+    color: var(--color-blue);
+    font-weight: 300;
+    opacity: 0.5;
+  }
+  
+  .about-subtitle {
+    font-size: 20px;
+    color: var(--color-accent);
+  }
+  
+  /* ============ MISSION ============ */
+  .about-mission {
+    margin-bottom: 80px;
+  }
+  
+  .mission-text {
+    font-size: 20px;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .highlight {
+    color: var(--color-blue);
+    font-weight: 600;
+  }
+  
+  /* ============ SECTION HEADINGS ============ */
+  .section-heading {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  /* ============ VALUES ============ */
+  .values-section {
+    margin-bottom: 80px;
+  }
+  
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+  }
+  
+  .value-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  .value-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-blue);
+  }
+  
+  .value-icon {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 16px;
+  }
+  
+  .value-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 10px;
+  }
+  
+  .value-description {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+  
+  /* ============ TECH STACK ============ */
+  .tech-section {
+    text-align: center;
+  }
+  
+  .tech-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .tech-tag {
+    background: var(--color-surface);
+    color: var(--color-text-secondary);
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid var(--color-border);
+    transition: all 0.3s ease;
+  }
+  
+  .tech-tag:hover {
+    border-color: var(--color-blue);
+    color: var(--color-blue);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  /* ============ MOBILE ============ */
+  @media (max-width: 768px) {
+    .about-title {
+      font-size: 36px;
+    }
+    
+    .mission-text {
+      font-size: 18px;
+    }
+    
+    .values-grid {
+      grid-template-columns: 1fr;
+    }
+  }

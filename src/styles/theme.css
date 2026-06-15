@@ -1,0 +1,68 @@
+/* ============ DESIGN TOKENS ============ */
+
+/* Light Theme (Default) */
+:root {
+    /* Background Colors */
+    --color-bg: #F5F6F8;
+    --color-surface: #FFFFFF;
+    
+    /* Text Colors */
+    --color-text-primary: #0E203C;
+    --color-text-secondary: #3A4A5C;
+    --color-text-muted: #6B7B8D;
+    
+    /* Brand Colors */
+    --color-blue: #2355E1;
+    --color-teal: #008F88;
+    --color-navy: #0E203C;
+    
+    /* Accent Colors */
+    --color-accent: #008F88;
+    --color-link: #2355E1;
+    
+    /* Borders & Shadows */
+    --color-border: #E1E5EB;
+    --shadow-sm: 0 1px 3px rgba(14, 32, 60, 0.06);
+    --shadow-md: 0 4px 12px rgba(14, 32, 60, 0.08);
+    --shadow-lg: 0 10px 30px rgba(14, 32, 60, 0.12);
+    
+    /* Gradients */
+    --gradient-brand: linear-gradient(135deg, #2355E1 0%, #008F88 100%);
+    
+    /* Typography */
+    --font-family: 'Poppins', sans-serif;
+    
+    /* Transitions */
+    --transition-theme: background-color 0.3s ease, color 0.3s ease, 
+                        border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Dark Theme */
+  [data-theme="dark"] {
+    /* Background Colors */
+    --color-bg: #0A0E14;
+    --color-surface: #131A22;
+    
+    /* Text Colors */
+    --color-text-primary: #E6EDF3;
+    --color-text-secondary: #8B949E;
+    --color-text-muted: #6E7681;
+    
+    /* Brand Colors (Adjusted for dark mode) */
+    --color-blue: #58A6FF;
+    --color-teal: #39D353;
+    --color-navy: #E6EDF3;
+    
+    /* Accent Colors */
+    --color-accent: #39D353;
+    --color-link: #58A6FF;
+    
+    /* Borders & Shadows */
+    --color-border: #1E2A36;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
+    
+    /* Gradients (Keep brand gradient) */
+    --gradient-brand: linear-gradient(135deg, #2355E1 0%, #008F88 100%);
+  }

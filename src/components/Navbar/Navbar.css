@@ -1,0 +1,169 @@
+/* ============ NAVBAR CONTAINER ============ */
+.navbar {
+    position: fixed;        /* Stays at top even when scrolling */
+    top: 0;
+    left: 0;
+    width: 100%;           /* Full width */
+    z-index: 1000;         /* Ensures it's above everything else */
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    transition: var(--transition-theme);
+    height: 72px;          /* Fixed height */
+  }
+  
+  .navbar-container {
+    max-width: 1200px;     /* Max width for large screens */
+    margin: 0 auto;        /* Center the container */
+    padding: 0 24px;       /* Space on sides */
+    display: flex;         /* Arrange items in a row */
+    justify-content: space-between; /* Space between logo and links */
+    align-items: center;   /* Vertically center items */
+    height: 100%;          /* Fill navbar height */
+  }
+  
+  /* ============ LOGO ============ */
+
+  .logo-image {
+    height: 110px;      /* Adjust size */
+    width: auto;       /* Keep proportions */
+  }
+  .navbar-logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    text-decoration: none; /* Remove underline from link */
+    letter-spacing: 2px;   /* Space between letters */
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-logo:hover {
+    color: var(--color-blue);
+  }
+  
+  .logo-bracket {
+    color: var(--color-blue); /* Blue brackets */
+    font-weight: 300;         /* Lighter weight for contrast */
+  }
+  
+  /* ============ NAV LINKS ============ */
+  .navbar-links {
+    display: flex;    /* Links in a row */
+    gap: 32px;        /* Space between links */
+  }
+  
+  .navbar-links a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    position: relative;  /* Needed for the underline effect */
+    transition: color 0.3s ease;
+  }
+  
+  /* Hover effect - sliding underline */
+  .navbar-links a::after {
+    content: '';           /* Empty content for the line */
+    position: absolute;
+    bottom: -4px;          /* Position below text */
+    left: 0;
+    width: 0%;             /* Starts invisible */
+    height: 2px;           /* Line thickness */
+    background: var(--gradient-brand); /* Blue to teal gradient */
+    transition: width 0.3s ease; /* Animate width */
+  }
+  
+  .navbar-links a:hover::after {
+    width: 100%;  /* Expands to full width on hover */
+  }
+  
+  .navbar-links a:hover {
+    color: var(--color-text-primary);
+  }
+  
+  /* ============ ACTIONS (Theme Toggle + Hamburger) ============ */
+  .navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  /* ============ THEME TOGGLE ============ */
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: var(--transition-theme);
+  }
+  
+  .theme-toggle:hover {
+    border-color: var(--color-blue);
+    transform: scale(1.1); /* Slightly enlarge on hover */
+  }
+  
+  /* ============ HAMBURGER MENU (Mobile) ============ */
+  .hamburger {
+    display: none;          /* Hidden on desktop */
+    flex-direction: column; /* Stack the 3 lines */
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  /* The 3 lines of the hamburger */
+  .hamburger span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: var(--color-text-primary);
+    transition: all 0.3s ease; /* Animate to X shape */
+  }
+  
+  /* When menu is open, transform to X */
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  .hamburger.active span:nth-child(2) {
+    opacity: 0; /* Middle line disappears */
+  }
+  
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+  
+  /* ============ MOBILE RESPONSIVE ============ */
+  @media (max-width: 768px) {
+    .hamburger {
+      display: flex; /* Show hamburger on mobile */
+    }
+  
+    .navbar-links {
+      position: fixed;       /* Cover screen */
+      top: 72px;             /* Below navbar */
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 72px); /* Full height minus navbar */
+      background-color: var(--color-surface);
+      flex-direction: column; /* Stack links vertically */
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      transform: translateX(100%); /* Hidden off-screen to the right */
+      transition: transform 0.3s ease;
+      z-index: 999;
+    }
+  
+    /* When active, slide in from right */
+    .navbar-links.active {
+      transform: translateX(0);
+    }
+  
+    .navbar-links a {
+      font-size: 24px; /* Bigger links for touch */
+    }
+  }
