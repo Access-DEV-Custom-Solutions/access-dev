@@ -1,38 +1,45 @@
 /* ============ NAVBAR CONTAINER ============ */
 .navbar {
-    position: fixed;        /* Stays at top even when scrolling */
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%;           /* Full width */
-    z-index: 1000;         /* Ensures it's above everything else */
+    width: 100%;
+    z-index: 1000;
     background-color: var(--color-surface);
     border-bottom: 1px solid var(--color-border);
-    transition: var(--transition-theme);
-    height: 72px;          /* Fixed height */
+    transition: all 0.4s ease;
+    height: 72px;
+  }
+  
+  /* Hidden state - slides up */
+  .navbar.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  
+  /* Visible state - slides down */
+  .navbar.visible {
+    transform: translateY(0);
+    opacity: 1;
   }
   
   .navbar-container {
-    max-width: 1200px;     /* Max width for large screens */
-    margin: 0 auto;        /* Center the container */
-    padding: 0 24px;       /* Space on sides */
-    display: flex;         /* Arrange items in a row */
-    justify-content: space-between; /* Space between logo and links */
-    align-items: center;   /* Vertically center items */
-    height: 100%;          /* Fill navbar height */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
   }
   
   /* ============ LOGO ============ */
-
-  .logo-image {
-    height: 110px;      /* Adjust size */
-    width: auto;       /* Keep proportions */
-  }
   .navbar-logo {
     font-size: 24px;
     font-weight: 700;
     color: var(--color-text-primary);
-    text-decoration: none; /* Remove underline from link */
-    letter-spacing: 2px;   /* Space between letters */
+    text-decoration: none;
+    letter-spacing: 2px;
     transition: color 0.3s ease;
   }
   
@@ -41,14 +48,14 @@
   }
   
   .logo-bracket {
-    color: var(--color-blue); /* Blue brackets */
-    font-weight: 300;         /* Lighter weight for contrast */
+    color: var(--color-blue);
+    font-weight: 300;
   }
   
   /* ============ NAV LINKS ============ */
   .navbar-links {
-    display: flex;    /* Links in a row */
-    gap: 32px;        /* Space between links */
+    display: flex;
+    gap: 32px;
   }
   
   .navbar-links a {
@@ -56,35 +63,56 @@
     text-decoration: none;
     font-size: 16px;
     font-weight: 500;
-    position: relative;  /* Needed for the underline effect */
+    position: relative;
     transition: color 0.3s ease;
   }
   
   /* Hover effect - sliding underline */
   .navbar-links a::after {
-    content: '';           /* Empty content for the line */
+    content: '';
     position: absolute;
-    bottom: -4px;          /* Position below text */
+    bottom: -4px;
     left: 0;
-    width: 0%;             /* Starts invisible */
-    height: 2px;           /* Line thickness */
-    background: var(--gradient-brand); /* Blue to teal gradient */
-    transition: width 0.3s ease; /* Animate width */
+    width: 0%;
+    height: 2px;
+    background: var(--gradient-brand);
+    transition: width 0.3s ease;
   }
   
   .navbar-links a:hover::after {
-    width: 100%;  /* Expands to full width on hover */
+    width: 100%;
   }
   
   .navbar-links a:hover {
     color: var(--color-text-primary);
   }
   
-  /* ============ ACTIONS (Theme Toggle + Hamburger) ============ */
+  /* ============ ACTIONS (Create Account + Theme Toggle + Hamburger) ============ */
   .navbar-actions {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
+  }
+  
+  /* ============ CREATE ACCOUNT BUTTON ============ */
+  .btn-create-account {
+    background: var(--gradient-brand);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: var(--font-family);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+  
+  .btn-create-account:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(35, 85, 225, 0.3);
   }
   
   /* ============ THEME TOGGLE ============ */
@@ -100,13 +128,13 @@
   
   .theme-toggle:hover {
     border-color: var(--color-blue);
-    transform: scale(1.1); /* Slightly enlarge on hover */
+    transform: scale(1.1);
   }
   
   /* ============ HAMBURGER MENU (Mobile) ============ */
   .hamburger {
-    display: none;          /* Hidden on desktop */
-    flex-direction: column; /* Stack the 3 lines */
+    display: none;
+    flex-direction: column;
     gap: 5px;
     background: none;
     border: none;
@@ -114,22 +142,21 @@
     padding: 5px;
   }
   
-  /* The 3 lines of the hamburger */
   .hamburger span {
     display: block;
     width: 25px;
     height: 2px;
     background-color: var(--color-text-primary);
-    transition: all 0.3s ease; /* Animate to X shape */
+    transition: all 0.3s ease;
   }
   
-  /* When menu is open, transform to X */
+  /* Transform to X when active */
   .hamburger.active span:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
   }
   
   .hamburger.active span:nth-child(2) {
-    opacity: 0; /* Middle line disappears */
+    opacity: 0;
   }
   
   .hamburger.active span:nth-child(3) {
@@ -139,31 +166,34 @@
   /* ============ MOBILE RESPONSIVE ============ */
   @media (max-width: 768px) {
     .hamburger {
-      display: flex; /* Show hamburger on mobile */
+      display: flex;
+    }
+  
+    .btn-create-account {
+      display: none;
     }
   
     .navbar-links {
-      position: fixed;       /* Cover screen */
-      top: 72px;             /* Below navbar */
+      position: fixed;
+      top: 72px;
       left: 0;
       width: 100%;
-      height: calc(100vh - 72px); /* Full height minus navbar */
+      height: calc(100vh - 72px);
       background-color: var(--color-surface);
-      flex-direction: column; /* Stack links vertically */
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       gap: 40px;
-      transform: translateX(100%); /* Hidden off-screen to the right */
+      transform: translateX(100%);
       transition: transform 0.3s ease;
       z-index: 999;
     }
   
-    /* When active, slide in from right */
     .navbar-links.active {
       transform: translateX(0);
     }
   
     .navbar-links a {
-      font-size: 24px; /* Bigger links for touch */
+      font-size: 24px;
     }
   }

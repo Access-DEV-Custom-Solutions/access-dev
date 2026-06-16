@@ -1,47 +1,58 @@
-
-import { useState } from 'react'
-import './Navbar.css'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import './Navbar.css'
 
 function Navbar({ theme, toggleTheme }) {
-  
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
 
-  // Function to toggle mobile menu
+  // Show navbar when user scrolls down
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setIsVisible(true)
+      } else {
+        setIsVisible(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   const handleMenuToggle = () => {
-    setIsMenuOpen(!isMenuOpen) // Flip true/false
+    setIsMenuOpen(!isMenuOpen)
   }
 
-  // Function to close menu when a link is clicked
   const closeMenu = () => {
     setIsMenuOpen(false)
   }
 
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${isVisible ? 'visible' : 'hidden'}`}>
       <div className="navbar-container">
         
         {/* LOGO */}
-       {/* LOGO */}
-       <Link to="/" className="navbar-logo">
-  <img 
-    src="/without background.png"           // ← Path to your logo
-    alt="ACCESS DEV"          // ← Alt text for accessibility
-    className="logo-image"    // ← Class for styling
-  />
-</Link>
+        <Link to="/" className="navbar-logo" onClick={closeMenu}>
+          <span className="logo-bracket">&lt;</span>
+          ACCESS DEV
+          <span className="logo-bracket">/&gt;</span>
+        </Link>
 
         {/* NAV LINKS - Desktop */}
         <div className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
-        
-        <Link to="/" onClick={closeMenu}>Home</Link>
-<Link to="/projects" onClick={closeMenu}>Projects</Link>
-<Link to="/about" onClick={closeMenu}>About</Link>
-<Link to="/contact" onClick={closeMenu}>Contact</Link>
-</div>
+          <Link to="/projects" onClick={closeMenu}>Projects</Link>
+          <Link to="/about" onClick={closeMenu}>About</Link>
+          <Link to="/contact" onClick={closeMenu}>Contact</Link>
+        </div>
 
-        {/* RIGHT SIDE: Theme Toggle + Hamburger */}
+        {/* RIGHT SIDE: Create Account + Theme Toggle + Hamburger */}
         <div className="navbar-actions">
+          
+          {/* Create Account Button */}
+          <Link to="/contact" className="btn-create-account">
+            Create Account
+          </Link>
           
           {/* Theme Toggle Button */}
           <button 
@@ -68,6 +79,5 @@ function Navbar({ theme, toggleTheme }) {
     </nav>
   )
 }
-
 
 export default Navbar
