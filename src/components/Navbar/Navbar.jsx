@@ -32,11 +32,14 @@ function Navbar({ theme, toggleTheme }) {
     <nav className={`navbar ${isVisible ? 'visible' : 'hidden'}`}>
       <div className="navbar-container">
         
-        {/* LOGO */}
+        {/* LOGO - Image + Text */}
         <Link to="/" className="navbar-logo" onClick={closeMenu}>
-          <span className="logo-bracket">&lt;</span>
-          ACCESS DEV
-          <span className="logo-bracket">/&gt;</span>
+          <img 
+            src="/without background.png" 
+            alt="ACCESS DEV" 
+            className="navbar-logo-img" 
+          />
+          
         </Link>
 
         {/* NAV LINKS - Desktop */}
