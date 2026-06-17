@@ -45,7 +45,7 @@ function Hero() {
           </h1>
           
           <p className="hero-subtitle">
-            Your gateway to <span className="text-highlight">Mobile</span>, <span className="text-highlight">Web</span>, <span className="text-highlight">Robotics</span> & <span className="text-highlight">AI</span> solutions. We build technology that transforms ideas into reality.
+            Your gateway to <span className="text-highlight">Mobile</span>, <span className="text-highlight">Web</span>, <span className="text-highlight">Web Redesigning</span> & <span className="text-highlight">AI</span> solutions. We build technology that transforms ideas into reality.
           </p>
           
           <div className="hero-buttons">
@@ -136,8 +136,8 @@ function Hero() {
             {/* Icon 3 - Bottom */}
             <div className="const-icon ci-bottom">
               <div className="const-card">
-                <span className="const-emoji">🖲️</span>
-                <span className="const-label">Robotics</span>
+                <span className="const-emoji">🔄</span>
+                <span className="const-label">Web Redesigning</span>
               </div>
             </div>
 

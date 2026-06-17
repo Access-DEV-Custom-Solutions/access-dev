@@ -58,7 +58,7 @@ function Projects() {
       tags: ['PHP', 'Laravel', 'Blade'],
       color: '#008F88',
       
-      source: 'https://github.com/Tawanda02/zimdirect-harvest'
+      source: 'https://github.com/Tawanda02/zimdirect-harvest'  
     },
   ]
 
@@ -69,7 +69,7 @@ function Projects() {
   const filters = [
     { id: 'all', icon: '🗂️', label: 'All' },
     { id: 'ai', icon: '🤖', label: 'AI' },
-    { id: 'robotics', icon: '🖲️', label: 'Robotics' },
+    { id: 'Web Redesigning', icon: '🔄', label: 'Web Redesigning' },
     { id: 'web', icon: '🌐', label: 'Web' },
   ]
 

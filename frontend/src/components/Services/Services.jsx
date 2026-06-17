@@ -26,11 +26,11 @@ function Services() {
     },
     {
       id: 'robotics',
-      icon: '🖲️',
-      title: 'ACCESS ROBOTICS',
-      subtitle: 'Hardware Meets Software',
-      description: 'Bridging the gap between physical and digital. Custom robotics solutions, IoT integration, and automation systems.',
-      tags: ['ROS', 'IoT', 'Embedded', 'Automation', 'Sensors'],
+      icon: '🔄',
+      title: 'WEB REDESIGNING',
+      subtitle: 'Modernize Your Web Presence',
+      description: 'Transform outdated websites into modern, high-performance digital experiences with cutting-edge redesign and optimization.',
+      tags: ['ROS', 'UI/UX Redesign', 'Perfomance Optimization', 'Modern Stack', 'Responsive'],
       color: '#E255A1'
     },
     {
