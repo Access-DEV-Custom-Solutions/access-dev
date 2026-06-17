@@ -1,5 +1,6 @@
 import os
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 from sqlmodel import Field, Session, SQLModel, create_engine, select
 
@@ -26,6 +27,14 @@ CONNECTION_STRING = os.environ.get("DB_URL")
 
 app = FastAPI()
 engine = create_engine(CONNECTION_STRING, connect_args={"sslmode": "require"}, pool_recycle=300)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173/"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 @app.get("/users")
 def users():
