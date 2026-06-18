@@ -415,3 +415,35 @@
     font-size: 26px;
   }
 }
+/* ============ VIEW ALL BUTTON ============ */
+.view-all-wrapper {
+  text-align: center;
+  margin-top: 56px;
+}
+
+.view-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--gradient-brand);
+  color: white;
+  text-decoration: none;
+  padding: 16px 36px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: var(--font-family);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 30px rgba(35, 85, 225, 0.25);
+}
+
+.view-all-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(35, 85, 225, 0.4);
+}
+
+.view-all-hint {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-top: 14px;
+}

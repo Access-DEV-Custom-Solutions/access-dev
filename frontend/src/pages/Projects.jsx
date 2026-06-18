@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import './Projects.css'
 
 function Projects() {
@@ -241,6 +242,28 @@ function Projects() {
             <p>Try selecting a different category</p>
           </motion.div>
         )}
+
+        {/* View All Projects Button - Redirects to SignUp */}
+        <motion.div 
+          className="view-all-wrapper"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <Link to="/signup" className="view-all-btn">
+            <span>View All Projects</span>
+            <motion.svg 
+              width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+              animate={{ x: [0, 5, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            >
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </motion.svg>
+          </Link>
+          <p className="view-all-hint">Create an account to access all our projects and request custom solutions</p>
+        </motion.div>
 
       </div>
     </section>

@@ -52,10 +52,9 @@ function Navbar({ theme, toggleTheme }) {
         {/* RIGHT SIDE: Create Account + Theme Toggle + Hamburger */}
         <div className="navbar-actions">
           
-          {/* Create Account Button */}
-          <Link to="/contact" className="btn-create-account">
-            Create Account
-          </Link>
+        <Link to="/signup" className="btn-create-account">
+  Create Account
+</Link>
           
           {/* Theme Toggle Button */}
           <button 

@@ -39,15 +39,14 @@ function PackageBuilder() {
         'Priority support 24/7'
       ],
       color: '#8B5CF6',
-      link: '/contact',
-      btnText: 'Get in Touch',
+      link: '/signup',
+      btnText: 'Get Started',
       badge: 'Premium'
     }
   ]
 
   return (
     <section id="package-builder" className="packages-section">
-      {/* Animated Background */}
       <div className="packages-bg">
         <div className="packages-glow packages-glow-1"></div>
         <div className="packages-glow packages-glow-2"></div>
@@ -55,9 +54,7 @@ function PackageBuilder() {
         <div className="packages-grid-bg"></div>
         <div className="packages-particles">
           {[...Array(20)].map((_, i) => (
-            <div 
-              key={i} 
-              className="packages-particle"
+            <div key={i} className="packages-particle"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
@@ -72,24 +69,18 @@ function PackageBuilder() {
       </div>
 
       <div className="packages-container">
-        
-        {/* Header */}
-        <motion.div 
-          className="packages-header"
+        <motion.div className="packages-header"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <motion.span 
-            className="packages-header-icon"
+          <motion.span className="packages-header-icon"
             initial={{ scale: 0, rotate: -45 }}
             whileInView={{ scale: 1, rotate: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1, type: "spring" }}
-          >
-            💼
-          </motion.span>
+          >💼</motion.span>
           <h2 className="packages-title">
             <span className="title-bracket">&lt;</span>
             Package Solutions
@@ -98,55 +89,31 @@ function PackageBuilder() {
           <p className="packages-subtitle">Choose the right solution for your business</p>
         </motion.div>
 
-        {/* Packages Grid */}
         <div className="packages-grid">
           {packages.map((pkg, index) => (
-            <motion.div 
-              key={pkg.id} 
-              className="package-card"
+            <motion.div key={pkg.id} className="package-card"
               style={{ '--package-color': pkg.color }}
               initial={{ opacity: 0, y: 60, scale: 0.9 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ 
-                duration: 0.6, 
-                delay: index * 0.2,
-                type: "spring",
-                stiffness: 80
-              }}
+              transition={{ duration: 0.6, delay: index * 0.2, type: "spring", stiffness: 80 }}
               whileHover={{ y: -12 }}
             >
-              {/* Glow border */}
               <div className="package-glow-border"></div>
-              
-              {/* Badge */}
-              <div className="package-badge" style={{ background: pkg.color }}>
-                {pkg.badge}
-              </div>
-
-              {/* Icon */}
-              <motion.div 
-                className="package-icon-wrap"
+              <div className="package-badge" style={{ background: pkg.color }}>{pkg.badge}</div>
+              <motion.div className="package-icon-wrap"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ type: "spring", stiffness: 200 }}
               >
                 <span className="package-icon">{pkg.icon}</span>
                 <div className="package-icon-ring"></div>
               </motion.div>
-
-              {/* Title & Subtitle */}
               <h3 className="package-title">{pkg.title}</h3>
-              <p className="package-subtitle-text" style={{ color: pkg.color }}>
-                {pkg.subtitle}
-              </p>
+              <p className="package-subtitle-text" style={{ color: pkg.color }}>{pkg.subtitle}</p>
               <p className="package-description">{pkg.description}</p>
-
-              {/* Features List */}
               <div className="package-features">
                 {pkg.features.map((feature, i) => (
-                  <motion.div 
-                    key={i} 
-                    className="package-feature"
+                  <motion.div key={i} className="package-feature"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -161,15 +128,11 @@ function PackageBuilder() {
                   </motion.div>
                 ))}
               </div>
-
-              {/* CTA Button */}
-              <Link to={pkg.link} className="package-btn" style={{ 
-                background: pkg.color,
-                boxShadow: `0 8px 30px ${pkg.color}40`
-              }}>
+              <Link to={pkg.link} className="package-btn"
+                style={{ background: pkg.color, boxShadow: `0 8px 30px ${pkg.color}40` }}
+              >
                 <span>{pkg.btnText}</span>
-                <motion.svg 
-                  width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                <motion.svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
                   animate={{ x: [0, 5, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
                 >
@@ -180,7 +143,6 @@ function PackageBuilder() {
             </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   )
