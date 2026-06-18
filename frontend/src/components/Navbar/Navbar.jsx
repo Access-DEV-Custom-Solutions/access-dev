@@ -6,7 +6,6 @@ function Navbar({ theme, toggleTheme }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
 
-  // Show navbar when user scrolls down
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 100) {
@@ -15,7 +14,6 @@ function Navbar({ theme, toggleTheme }) {
         setIsVisible(false)
       }
     }
-
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -32,7 +30,7 @@ function Navbar({ theme, toggleTheme }) {
     <nav className={`navbar ${isVisible ? 'visible' : 'hidden'}`}>
       <div className="navbar-container">
         
-        {/* LOGO - Image only, links to Home */}
+        {/* LOGO */}
         <Link to="/" className="navbar-logo" onClick={closeMenu}>
           <img 
             src="/without background.png" 
@@ -41,22 +39,28 @@ function Navbar({ theme, toggleTheme }) {
           />
         </Link>
 
-        {/* NAV LINKS - Desktop */}
+        {/* NAV LINKS */}
         <div className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
           <Link to="/" onClick={closeMenu}>Home</Link>
           <Link to="/projects" onClick={closeMenu}>Projects</Link>
           <Link to="/about" onClick={closeMenu}>About</Link>
           <Link to="/contact" onClick={closeMenu}>Contact</Link>
+          
+          {/* Mobile-only Create Account */}
+          <Link to="/signup" className="btn-create-account mobile-only" onClick={closeMenu}>
+            Create Account
+          </Link>
         </div>
 
-        {/* RIGHT SIDE: Create Account + Theme Toggle + Hamburger */}
+        {/* RIGHT SIDE */}
         <div className="navbar-actions">
           
-        <Link to="/signup" className="btn-create-account">
-  Create Account
-</Link>
+          {/* Desktop Create Account Button */}
+          <Link to="/signup" className="btn-create-account desktop-only">
+            Create Account
+          </Link>
           
-          {/* Theme Toggle Button */}
+          {/* Theme Toggle */}
           <button 
             className="theme-toggle"
             onClick={toggleTheme}
@@ -65,7 +69,7 @@ function Navbar({ theme, toggleTheme }) {
             {theme === 'light' ? '🌙' : '☀️'}
           </button>
 
-          {/* Hamburger Menu Button - Mobile only */}
+          {/* Animated Hamburger */}
           <button 
             className={`hamburger ${isMenuOpen ? 'active' : ''}`}
             onClick={handleMenuToggle}
