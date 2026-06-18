@@ -88,6 +88,13 @@ function About() {
       bio: 'Specializing in scalable web applications and mobile development. Experienced in cloud architecture and DevOps.',
       skills: ['Web Dev', 'Mobile Dev', 'Cloud'],
       image: '/images/team/tawanda.jpg'
+    },
+    {
+      name: 'Nobuhle Trish Mkwedu',
+      role: 'Web & Mobile Developer',
+      bio: 'Creative developer focused on building beautiful, responsive web and mobile experiences. Passionate about UI/UX design and frontend innovation.',
+      skills: ['React', 'Flutter', 'UI/UX', 'JavaScript'],
+      image: '/images/team/nobuhle.jpg'
     }
   ]
 
@@ -145,7 +152,6 @@ function About() {
               alt="ACCESS DEV" 
               className="about-logo-img" 
             />
-            {/* Glow ring behind logo */}
             <div className="about-logo-glow"></div>
           </motion.div>
           
@@ -249,10 +255,10 @@ function About() {
               <motion.div 
                 key={index} 
                 className="team-card"
-                initial={{ opacity: 0, x: index % 2 === 0 ? -60 : 60 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -60 : 60, y: 30 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2, ease: "easeOut" }}
+                transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
                 whileHover={{ y: -8 }}
               >
                 <motion.div 
