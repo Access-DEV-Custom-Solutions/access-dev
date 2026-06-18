@@ -94,7 +94,7 @@ function About() {
       role: 'Web & Mobile Developer',
       bio: 'Creative developer focused on building beautiful, responsive web and mobile experiences. Passionate about UI/UX design and frontend innovation.',
       skills: ['React', 'Flutter', 'UI/UX', 'JavaScript'],
-      image: '/images/team/nobuhle.jpg'
+      image: '/images/team/Nobuhle.jpeg'
     }
   ]
 
