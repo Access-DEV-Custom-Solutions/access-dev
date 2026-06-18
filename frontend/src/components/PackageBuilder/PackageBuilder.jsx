@@ -81,11 +81,7 @@ function PackageBuilder() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1, type: "spring" }}
           >💼</motion.span>
-          <h2 className="packages-title">
-            <span className="title-bracket">&lt;</span>
-            Package Solutions
-            <span className="title-bracket">/&gt;</span>
-          </h2>
+         <h2 className="packages-title">Package Solutions</h2>
           <p className="packages-subtitle">Choose the right solution for your business</p>
         </motion.div>
 
