@@ -11,7 +11,7 @@ function Projects() {
       id: 1,
       title: 'SMS Chatbot',
       category: 'ai',
-      icon: '💬',
+      image: '/images/projects/chatbot.webp',
       description: 'An AI-powered artificial intelligent chatbot for SMS messages. Automated conversations and support via text messaging.',
       tags: ['JavaScript', 'Kotlin', 'TypeScript', 'Ruby', 'Objective-C'],
       color: '#8B5CF6',
@@ -21,7 +21,7 @@ function Projects() {
       id: 2,
       title: 'AI Helpdesk',
       category: 'ai',
-      icon: '🖥️',
+      image: '/images/projects/helpdesk.jpeg',
       description: 'AI-based customer service and helpdesk solution. Intelligent ticket routing and automated response system.',
       tags: ['Python', 'Java', 'Jupyter Notebook'],
       color: '#8B5CF6',
@@ -31,7 +31,7 @@ function Projects() {
       id: 3,
       title: 'Customer Support Chatbot LLM',
       category: 'ai',
-      icon: '🤖',
+      image: '/images/projects/chatbot2.jpeg',
       description: 'LLM Low Rank Adaptation using Reinforcement Learning with Human Feedback (RLHF) for a customer service chatbot.',
       tags: ['Python', 'LLM', 'RLHF', 'Jupyter Notebook'],
       color: '#8B5CF6',
@@ -41,7 +41,7 @@ function Projects() {
       id: 4,
       title: 'My ROS Bot',
       category: 'robotics',
-      icon: '🖲️',
+      image: '/images/projects/ros.jpeg',
       description: 'ROS2 Jazzy robot built from scratch. Custom robotics solution with full hardware and software integration.',
       tags: ['C++', 'Python', 'JavaScript', 'CSS', 'Kotlin'],
       color: '#E255A1',
@@ -51,7 +51,7 @@ function Projects() {
       id: 5,
       title: 'ZimDirect Harvest',
       category: 'web',
-      icon: '🌐',
+      image: '/images/projects/farming.jpeg',
       description: 'Agricultural marketplace connecting Zimbabwean farmers directly with buyers. Empowering local agriculture through technology.',
       tags: ['PHP', 'Laravel', 'Blade'],
       color: '#008F88',
@@ -170,22 +170,16 @@ function Projects() {
                 {/* Glow border on hover */}
                 <div className="card-glow-border"></div>
                 
-                {/* Image Area */}
+                {/* Project Image */}
                 <div className="project-image">
-                  <div className="project-gradient" style={{ 
-                    background: `linear-gradient(135deg, ${project.color}33, ${project.color}66)` 
-                  }}>
-                    <motion.span 
-                      className="project-icon"
-                      whileHover={{ scale: 1.2, rotate: 5 }}
-                      transition={{ type: "spring", stiffness: 200 }}
-                    >
-                      {project.icon}
-                    </motion.span>
-                  </div>
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="project-img"
+                  />
                   
-                  {/* Code pattern overlay */}
-                  <div className="code-pattern"></div>
+                  {/* Gradient overlay */}
+                  <div className="project-img-overlay"></div>
                   
                   {/* Hover Overlay */}
                   <div className="project-overlay">

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import './Services.css'
 
@@ -25,12 +25,12 @@ function Services() {
       color: '#008F88'
     },
     {
-      id: 'robotics',
-      icon: '🔄',
-      title: 'WEB REDESIGNING',
-      subtitle: 'Modernize Your Web Presence',
+      id: 'redesign',
+      icon: '✨',
+      title: 'ACCESS WEB REDESIGN',
+      subtitle: 'Modernize Your Digital Presence',
       description: 'Transform outdated websites into modern, high-performance digital experiences with cutting-edge redesign and optimization.',
-      tags: ['ROS', 'UI/UX Redesign', 'Perfomance Optimization', 'Modern Stack', 'Responsive'],
+      tags: ['UI/UX', 'Performance', 'SEO', 'Migration', 'Rebranding'],
       color: '#E255A1'
     },
     {
@@ -50,8 +50,57 @@ function Services() {
 
   return (
     <section id="services" className="services-section">
-      {/* Tech dot pattern */}
-      <div className="services-bg-pattern"></div>
+      {/* Live Animated Background */}
+      <div className="services-live-bg">
+        {/* Floating orbs */}
+        <div className="services-orb services-orb-1"></div>
+        <div className="services-orb services-orb-2"></div>
+        <div className="services-orb services-orb-3"></div>
+        <div className="services-orb services-orb-4"></div>
+        
+        {/* Animated grid */}
+        <div className="services-animated-grid"></div>
+        
+        {/* Floating particles */}
+        <div className="services-particles-container">
+          {[...Array(25)].map((_, i) => (
+            <div
+              key={i}
+              className="services-particle"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 8}s`,
+                animationDuration: `${Math.random() * 6 + 4}s`,
+                width: `${Math.random() * 4 + 2}px`,
+                height: `${Math.random() * 4 + 2}px`,
+                '--particle-color': ['#2355E1', '#008F88', '#E255A1', '#8B5CF6'][Math.floor(Math.random() * 4)],
+              }}
+            ></div>
+          ))}
+        </div>
+
+        {/* Code rain effect */}
+        <div className="services-code-rain">
+          {[...Array(10)].map((_, i) => (
+            <div
+              key={i}
+              className="code-column"
+              style={{
+                left: `${i * 10 + Math.random() * 5}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${Math.random() * 3 + 3}s`,
+              }}
+            >
+              {[...Array(8)].map((_, j) => (
+                <span key={j} className="code-char" style={{ animationDelay: `${j * 0.3}s` }}>
+                  {String.fromCharCode(60 + Math.random() * 10)}
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
       
       <div className="services-container">
         
@@ -63,11 +112,7 @@ function Services() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="section-title">
-            <span className="title-bracket">&lt;</span>
-            Our Services
-            <span className="title-bracket">/&gt;</span>
-          </h2>
+          <h2 className="section-title">Our Services</h2>
           <p className="section-subtitle">Choose your domain of innovation</p>
         </motion.div>
 
