@@ -83,11 +83,18 @@ function About() {
       image: '/images/team/malvin.png'
     },
     {
-      name: 'Malvin Haparimwi',
+      name: 'Tawanda Madanhire',
       role: 'Web and App Developer',
       bio: 'Specializing in scalable web applications and mobile development. Experienced in cloud architecture and DevOps.',
       skills: ['Web Dev', 'Mobile Dev', 'Cloud'],
       image: '/images/team/tawanda.jpg'
+    },
+    {
+      name: 'Nobuhle Trish Mkwedu',
+      role: 'Web & Mobile Developer',
+      bio: 'Creative developer focused on building beautiful, responsive web and mobile experiences. Passionate about UI/UX design and frontend innovation.',
+      skills: ['React', 'Flutter', 'UI/UX', 'JavaScript'],
+      image: '/images/team/Nobuhle.jpeg'
     }
   ]
 
@@ -119,32 +126,41 @@ function About() {
       
       <div className="about-container">
         
-        {/* Header */}
+        {/* Header with Logo */}
         <motion.div 
           className="about-header"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.6 }}
         >
-          <motion.h1 
-            className="about-title"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+          <motion.div 
+            className="about-logo-wrap"
+            initial={{ opacity: 0, scale: 0.5, rotateY: 90 }}
+            whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ 
+              duration: 0.8, 
+              delay: 0.1,
+              type: "spring",
+              stiffness: 100,
+              damping: 10
+            }}
           >
-            <span className="title-bracket">&lt;</span>
-            About ACCESS DEV
-           
-            <span className="title-bracket">/&gt;</span>
-          </motion.h1>
+            <img 
+              src="/without background.png" 
+              alt="ACCESS DEV" 
+              className="about-logo-img" 
+            />
+            <div className="about-logo-glow"></div>
+          </motion.div>
+          
           <motion.p 
             className="about-subtitle"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
           >
             Bridging the gap between vision and technology
           </motion.p>
@@ -156,14 +172,14 @@ function About() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
         >
           <motion.p 
             className="mission-text"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
             ACCESS DEV is a technology company specializing in 
             <span className="highlight"> Mobile Development</span>, 
@@ -239,10 +255,10 @@ function About() {
               <motion.div 
                 key={index} 
                 className="team-card"
-                initial={{ opacity: 0, x: index % 2 === 0 ? -60 : 60 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -60 : 60, y: 30 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2, ease: "easeOut" }}
+                transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
                 whileHover={{ y: -8 }}
               >
                 <motion.div 

@@ -32,18 +32,18 @@ function Navbar({ theme, toggleTheme }) {
     <nav className={`navbar ${isVisible ? 'visible' : 'hidden'}`}>
       <div className="navbar-container">
         
-        {/* LOGO - Image + Text */}
+        {/* LOGO - Image only, links to Home */}
         <Link to="/" className="navbar-logo" onClick={closeMenu}>
           <img 
             src="/without background.png" 
             alt="ACCESS DEV" 
             className="navbar-logo-img" 
           />
-          
         </Link>
 
         {/* NAV LINKS - Desktop */}
         <div className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
+          <Link to="/" onClick={closeMenu}>Home</Link>
           <Link to="/projects" onClick={closeMenu}>Projects</Link>
           <Link to="/about" onClick={closeMenu}>About</Link>
           <Link to="/contact" onClick={closeMenu}>Contact</Link>
@@ -52,10 +52,9 @@ function Navbar({ theme, toggleTheme }) {
         {/* RIGHT SIDE: Create Account + Theme Toggle + Hamburger */}
         <div className="navbar-actions">
           
-          {/* Create Account Button */}
-          <Link to="/contact" className="btn-create-account">
-            Create Account
-          </Link>
+        <Link to="/signup" className="btn-create-account">
+  Create Account
+</Link>
           
           {/* Theme Toggle Button */}
           <button 

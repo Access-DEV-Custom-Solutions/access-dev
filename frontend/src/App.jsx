@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import Projects from './pages/Projects'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import SignUp from './pages/SignUp'
 
 // Page transition wrapper
 function PageTransition({ children }) {
@@ -32,6 +33,7 @@ function AnimatedRoutes() {
         <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
         <Route path="/about" element={<PageTransition><About /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </AnimatePresence>
   )
