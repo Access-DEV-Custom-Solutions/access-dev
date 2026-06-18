@@ -112,11 +112,7 @@ function Projects() {
           >
             <span className="header-icon">🚀</span>
           </motion.div>
-          <h1 className="section-title">
-            <span className="title-bracket">&lt;</span>
-            My Projects
-            <span className="title-bracket">/&gt;</span>
-          </h1>
+          <h1 className="section-title">My Projects</h1>
           <p className="section-subtitle">Real-world solutions built with cutting-edge technology</p>
         </motion.div>
 

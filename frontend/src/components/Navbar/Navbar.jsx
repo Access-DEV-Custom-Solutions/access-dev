@@ -46,7 +46,10 @@ function Navbar({ theme, toggleTheme }) {
           <Link to="/about" onClick={closeMenu}>About</Link>
           <Link to="/contact" onClick={closeMenu}>Contact</Link>
           
-          {/* Mobile-only Create Account */}
+          {/* Mobile-only buttons */}
+          <Link to="/signin" className="btn-signin mobile-only" onClick={closeMenu}>
+            Sign In
+          </Link>
           <Link to="/signup" className="btn-create-account mobile-only" onClick={closeMenu}>
             Create Account
           </Link>
@@ -55,7 +58,12 @@ function Navbar({ theme, toggleTheme }) {
         {/* RIGHT SIDE */}
         <div className="navbar-actions">
           
-          {/* Desktop Create Account Button */}
+          {/* Sign In Button */}
+          <Link to="/signin" className="btn-signin desktop-only">
+            Sign In
+          </Link>
+          
+          {/* Create Account Button */}
           <Link to="/signup" className="btn-create-account desktop-only">
             Create Account
           </Link>

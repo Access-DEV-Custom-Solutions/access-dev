@@ -28,7 +28,7 @@
   text-decoration: none; transition: opacity 0.3s ease;
 }
 .navbar-logo:hover { opacity: 0.85; }
-.navbar-logo-img { height: 38px; width: auto; display: block; }
+.navbar-logo-img { height: 120px; width: auto; display: block; }
 
 /* ============ NAV LINKS ============ */
 .navbar-links { display: flex; gap: 32px; }
@@ -48,7 +48,25 @@
 .navbar-links a:hover { color: var(--color-text-primary); }
 
 /* ============ ACTIONS ============ */
-.navbar-actions { display: flex; align-items: center; gap: 12px; }
+.navbar-actions { display: flex; align-items: center; gap: 10px; }
+
+/* ============ SIGN IN BUTTON ============ */
+.btn-signin {
+  background: transparent;
+  color: var(--color-text-primary);
+  border: 1.5px solid var(--color-border);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px; font-weight: 600;
+  font-family: var(--font-family); cursor: pointer;
+  text-decoration: none; transition: all 0.3s ease;
+  white-space: nowrap;
+}
+.btn-signin:hover {
+  border-color: var(--color-blue); color: var(--color-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(35, 85, 225, 0.1);
+}
 
 /* ============ CREATE ACCOUNT BUTTON ============ */
 .btn-create-account {
@@ -136,7 +154,7 @@
   .desktop-only { display: none; }
   .mobile-only { display: flex; }
 
-  .navbar-logo-img { height: 32px; }
+  .navbar-logo-img { height: 70px; }
 
   .navbar-links {
     position: fixed; top: 72px; left: 0;
@@ -150,13 +168,22 @@
   }
 
   .navbar-links.active { transform: translateX(0); }
-
   .navbar-links a { font-size: 22px; }
+
+  .navbar-links .btn-signin {
+    padding: 14px 32px;
+    font-size: 16px;
+    border-radius: 12px;
+  }
 
   .navbar-links .btn-create-account {
     padding: 14px 32px;
     font-size: 16px;
     border-radius: 12px;
-    margin-top: 8px;
+    margin-top: -12px;
   }
+}
+
+@media (max-width: 480px) {
+  .navbar-logo-img { height: 75px; }
 }
