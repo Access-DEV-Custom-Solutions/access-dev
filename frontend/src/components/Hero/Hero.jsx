@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import './Hero.css'
 
 function Hero() {
@@ -49,21 +50,13 @@ function Hero() {
           </p>
           
           <div className="hero-buttons">
-            <button className="btn-primary">
+            <Link to="/signup" className="btn-primary">
               <span>Get Started</span>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
-            </button>
-            <button className="btn-secondary">
-              <span>View Services</span>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 16 16 12 12 8"></polyline>
-                <line x1="8" y1="12" x2="16" y2="12"></line>
-              </svg>
-            </button>
+            </Link>
           </div>
         </div>
 
@@ -92,31 +85,60 @@ function Hero() {
               <div className="const-hub-pulse p3"></div>
             </div>
 
-            {/* Icons with labels */}
             <div className="const-icon ci-top">
               <div className="const-card">
-                <span className="const-emoji">📱</span>
-                <span className="const-label">Mobile</span>
+                <span className="const-emoji">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                    <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                  </svg>
+                </span>
+                <span className="const-label">Mobile Dev</span>
               </div>
             </div>
 
             <div className="const-icon ci-right">
               <div className="const-card">
-                <span className="const-emoji">🌐</span>
-                <span className="const-label">Web</span>
+                <span className="const-emoji">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"></path>
+                  </svg>
+                </span>
+                <span className="const-label">Web Dev</span>
               </div>
             </div>
 
             <div className="const-icon ci-bottom">
               <div className="const-card">
-                <span className="const-emoji">✨</span>
-                <span className="const-label">Redesign</span>
+                <span className="const-emoji">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="23 4 23 10 17 10"></polyline>
+                    <polyline points="1 20 1 14 7 14"></polyline>
+                    <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"></path>
+                  </svg>
+                </span>
+                <span className="const-label">Website Redesign</span>
               </div>
             </div>
 
             <div className="const-icon ci-left">
               <div className="const-card">
-                <span className="const-emoji">🤖</span>
+                <span className="const-emoji">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                    <path d="M9 1v3"></path>
+                    <path d="M15 1v3"></path>
+                    <path d="M9 20v3"></path>
+                    <path d="M15 20v3"></path>
+                    <path d="M20 9h3"></path>
+                    <path d="M20 14h3"></path>
+                    <path d="M1 9h3"></path>
+                    <path d="M1 14h3"></path>
+                    <circle cx="12" cy="12" r="2"></circle>
+                  </svg>
+                </span>
                 <span className="const-label">AI</span>
               </div>
             </div>
