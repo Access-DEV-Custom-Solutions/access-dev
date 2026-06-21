@@ -9,6 +9,10 @@ import About from './pages/About'
 import Contact from './pages/Contact'
 import SignUp from './pages/SignUp'
 import SignIn from './pages/SignIn'
+import MobileDev from './pages/services/MobileDev'
+import WebDev from './pages/services/WebDev'
+import WebRedesign from './pages/services/WebRedesign'
+import AISolutions from './pages/services/AISolutions'
 
 // Page transition wrapper
 function PageTransition({ children }) {
@@ -36,6 +40,10 @@ function AnimatedRoutes() {
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/services/mobile" element={<MobileDev />} />
+<Route path="/services/web" element={<WebDev />} />
+<Route path="/services/redesign" element={<WebRedesign />} />
+<Route path="/services/ai" element={<AISolutions />} />
       </Routes>
     </AnimatePresence>
   )
