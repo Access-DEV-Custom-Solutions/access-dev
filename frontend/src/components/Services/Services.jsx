@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import './Services.css'
 
 function Services() {
@@ -20,7 +21,8 @@ function Services() {
       subtitle: 'Native & Cross-Platform',
       description: 'Build powerful mobile applications for iOS and Android with cutting-edge frameworks. Seamless user experiences that drive engagement.',
       tags: ['iOS', 'Android', 'React Native', 'Flutter', 'PWA'],
-      color: '#2355E1'
+      color: '#2355E1',
+      link: '/services/mobile'
     },
     {
       id: 'web',
@@ -35,7 +37,8 @@ function Services() {
       subtitle: 'Full-Stack Solutions',
       description: 'From responsive landing pages to complex web applications. Modern architectures with performance and scalability at core.',
       tags: ['React', 'Node.js', 'Next.js', 'TypeScript', 'APIs'],
-      color: '#008F88'
+      color: '#008F88',
+      link: '/services/web'
     },
     {
       id: 'redesign',
@@ -50,7 +53,8 @@ function Services() {
       subtitle: 'Modernize Your Digital Presence',
       description: 'Transform outdated websites into modern, high-performance digital experiences with cutting-edge redesign and optimization.',
       tags: ['UI/UX', 'Performance', 'SEO', 'Migration', 'Rebranding'],
-      color: '#E255A1'
+      color: '#E255A1',
+      link: '/services/redesign'
     },
     {
       id: 'ai',
@@ -72,7 +76,8 @@ function Services() {
       subtitle: 'Intelligence at Scale',
       description: 'Harness the power of machine learning and AI. From predictive models to natural language processing and computer vision.',
       tags: ['ML', 'NLP', 'Vision', 'LLMs', 'Analytics'],
-      color: '#8B5CF6'
+      color: '#8B5CF6',
+      link: '/services/ai'
     }
   ]
 
@@ -173,10 +178,10 @@ function Services() {
                     <span key={tag} className="tag">{tag}</span>
                   ))}
                 </div>
-                <button className="card-btn">
+                <Link to={service.link} className="card-btn">
                   Learn More
                   <span className="btn-arrow">→</span>
-                </button>
+                </Link>
               </div>
             </motion.div>
           ))}
@@ -212,10 +217,10 @@ function Services() {
                       <span key={tag} className="tag">{tag}</span>
                     ))}
                   </div>
-                  <button className="card-btn">
+                  <Link to={services[currentSlide]?.link} className="card-btn">
                     Learn More
                     <span className="btn-arrow">→</span>
-                  </button>
+                  </Link>
                 </div>
               </div>
             </motion.div>
