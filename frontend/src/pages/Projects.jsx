@@ -65,9 +65,9 @@ function Projects() {
 
   const filters = [
     { id: 'all', icon: '🗂️', label: 'All Projects' },
-    { id: 'ai', icon: '🤖', label: 'AI / ML' },
-    { id: 'robotics', icon: '🖲️', label: 'Robotics' },
-    { id: 'web', icon: '🌐', label: 'Web Dev' },
+    { id: 'ai', icon: '', label: 'AI / ML' },
+    { id: 'robotics', icon: '', label: 'Robotics' },
+    { id: 'web', icon: '', label: 'Web Dev' },
   ]
 
   return (
@@ -110,9 +110,12 @@ function Projects() {
             animate={{ scale: 1, rotate: 0 }}
             transition={{ duration: 0.6, delay: 0.2, type: "spring", stiffness: 150 }}
           >
-            <span className="header-icon">🚀</span>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+  <polyline points="16 18 22 12 16 6"></polyline>
+  <polyline points="8 6 2 12 8 18"></polyline>
+</svg>
           </motion.div>
-          <h1 className="section-title">My Projects</h1>
+          <h1 className="section-title">Our Projects</h1>
           <p className="section-subtitle">Real-world solutions built with cutting-edge technology</p>
         </motion.div>
 

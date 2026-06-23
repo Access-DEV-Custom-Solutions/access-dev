@@ -11,10 +11,47 @@ function MobileDev() {
   ]
 
   const features = [
-    { icon: '📱', title: 'Native iOS & Android', desc: 'Swift and Kotlin apps that feel right at home on every device.' },
-    { icon: '⚡', title: 'Cross-Platform Solutions', desc: 'React Native and Flutter apps that save time without sacrificing quality.' },
-    { icon: '🎨', title: 'Pixel-Perfect UI', desc: 'Custom animations, gestures, and transitions that delight users.' },
-    { icon: '🔒', title: 'Secure & Scalable', desc: 'Enterprise-grade security with backend APIs that scale to millions.' }
+    { 
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+          <line x1="12" y1="18" x2="12.01" y2="18"></line>
+        </svg>
+      ), 
+      title: 'Native iOS & Android', 
+      desc: 'Swift and Kotlin apps that feel right at home on every device.' 
+    },
+    { 
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="16 18 22 12 16 6"></polyline>
+          <polyline points="8 6 2 12 8 18"></polyline>
+        </svg>
+      ), 
+      title: 'Cross-Platform Solutions', 
+      desc: 'React Native and Flutter apps that save time without sacrificing quality.' 
+    },
+    { 
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon>
+          <line x1="12" y1="22" x2="12" y2="15.5"></line>
+          <polyline points="22 8.5 12 15.5 2 8.5"></polyline>
+        </svg>
+      ), 
+      title: 'Pixel-Perfect UI', 
+      desc: 'Custom animations, gestures, and transitions that delight users.' 
+    },
+    { 
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0110 0v4"></path>
+        </svg>
+      ), 
+      title: 'Secure & Scalable', 
+      desc: 'Enterprise-grade security with backend APIs that scale to millions.' 
+    }
   ]
 
   const process = [
@@ -27,10 +64,57 @@ function MobileDev() {
   ]
 
   const platforms = [
-    { icon: '🍎', name: 'iOS', desc: 'Swift, SwiftUI, Core Data' },
-    { icon: '🤖', name: 'Android', desc: 'Kotlin, Jetpack Compose' },
-    { icon: '⚛️', name: 'React Native', desc: 'JavaScript, TypeScript' },
-    { icon: '🦋', name: 'Flutter', desc: 'Dart, Material Design' }
+    { 
+      icon: (
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 2.5c-1.5 0-2.7 1.2-2.7 2.7 0 .8.3 1.5.9 2 .6.5 1.2.8 1.8.8s1.2-.3 1.8-.8c.6-.5.9-1.2.9-2 0-1.5-1.2-2.7-2.7-2.7z"></path>
+          <path d="M17 21H7c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2z"></path>
+          <line x1="9" y1="17" x2="15" y2="17"></line>
+        </svg>
+      ), 
+      name: 'iOS', 
+      desc: 'Swift, SwiftUI, Core Data' 
+    },
+    { 
+      icon: (
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="9" cy="9" r="1"></circle>
+          <circle cx="15" cy="9" r="1"></circle>
+          <path d="M7 14h10"></path>
+          <path d="M12 14v4"></path>
+          <path d="M8 18h8"></path>
+          <path d="M5 11c0-4 3-7 7-7s7 3 7 7"></path>
+          <path d="M7 3L5 1"></path>
+          <path d="M17 3l2-2"></path>
+        </svg>
+      ), 
+      name: 'Android', 
+      desc: 'Kotlin, Jetpack Compose' 
+    },
+    { 
+      icon: (
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="2.5"></circle>
+          <path d="M12 2c-3.3 5.5-3.3 14.5 0 20"></path>
+          <path d="M12 2c3.3 5.5 3.3 14.5 0 20"></path>
+          <path d="M2 12c5.5-3.3 14.5-3.3 20 0"></path>
+          <path d="M2 12c5.5 3.3 14.5 3.3 20 0"></path>
+        </svg>
+      ), 
+      name: 'React Native', 
+      desc: 'JavaScript, TypeScript' 
+    },
+    { 
+      icon: (
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="19 2 5 16 19 16"></polyline>
+          <polyline points="5 8 12 15 19 8"></polyline>
+          <polyline points="19 22 12 15 5 22"></polyline>
+        </svg>
+      ), 
+      name: 'Flutter', 
+      desc: 'Dart, Material Design' 
+    }
   ]
 
   return (

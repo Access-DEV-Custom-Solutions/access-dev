@@ -127,7 +127,7 @@ function AISolutions() {
           initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}
         >
           <div className="image-section-wrap">
-            <img src="/images/services/ai-1.jpg" alt="AI Solutions" className="image-section-img" />
+            <img src="/images/services/ai.webp" alt="AI Solutions" className="image-section-img" />
             <div className="image-section-overlay">
               <motion.div className="image-section-content"
                 initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
@@ -161,7 +161,7 @@ function AISolutions() {
             <motion.div className="split-image"
               initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}
             >
-              <img src="/images/services/ai-2.jpg" alt="AI Process" className="split-img" />
+              <img src="/images/services/model.webp" alt="AI Process" className="split-img" />
             </motion.div>
             <motion.div className="split-content"
               initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}
