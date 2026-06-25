@@ -57,7 +57,7 @@ function Industries() {
           <p className="industries-subtitle">Delivering solutions across diverse sectors</p>
         </div>
 
-        {/* Row 1 - Moving Right to Left */}
+        {/* Row 1 - Moving Left to Right */}
         <div className="industries-row">
           <div className="industries-track track-left">
             {[...topRow, ...topRow, ...topRow].map((industry, i) => (
@@ -77,7 +77,7 @@ function Industries() {
 
         {/* Row 2 - Moving Left to Right */}
         <div className="industries-row">
-          <div className="industries-track track-right">
+          <div className="industries-track track-left">
             {[...bottomRow, ...bottomRow, ...bottomRow].map((industry, i) => (
               <div key={i} className="industry-card">
                 <div className="industry-card-image">

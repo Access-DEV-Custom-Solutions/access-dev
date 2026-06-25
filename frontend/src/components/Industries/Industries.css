@@ -144,18 +144,18 @@
   padding: 14px 0;
 }
 
-/* Track 1 - Right to Left */
+/* Track - Left to Right */
 .track-left {
   animation: scrollLeft 60s linear infinite;
 }
 @keyframes scrollLeft {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-33.333%); }
+  0% { transform: translateX(-33.333%); }
+  100% { transform: translateX(0); }
 }
 
-/* Track 2 - Left to Right */
+/* Track - Left to Right (same direction) */
 .track-right {
-  animation: scrollRight 60s linear infinite;
+  animation: scrollLeft 60s linear infinite;
 }
 @keyframes scrollRight {
   0% { transform: translateX(-33.333%); }
