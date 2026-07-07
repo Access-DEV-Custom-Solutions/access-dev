@@ -60,8 +60,8 @@ function Hero() {
           </div>
           
           <h1 className="hero-title">
-            <span className="title-line">Access the Future of</span>
-            <span className="title-line gradient-text">Development</span>
+            <span className="title-line">Affordable Tech Solutions</span>
+            <span className="title-line gradient-text"></span>
           </h1>
           
           <p className="hero-subtitle">
