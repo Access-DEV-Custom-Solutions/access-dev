@@ -3,12 +3,19 @@ import { useState } from "react";
 
 function Contact() {
   const [projectData, setProjectData] = useState({
-    firstname: "",
-    lastname: "place",
+    fullname: "",
     email: "",
     service: "",
     details: "",
   });
+
+  const [modal, setModal] = useState({
+    show: false,
+    status: "", // "success" | "error"
+    message: "",
+  });
+
+  const closeModal = () => setModal({ show: false, status: "", message: "" });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,8 +27,35 @@ function Contact() {
       },
       body: JSON.stringify(projectData),
     })
-      .then((reposne) => console.log(reposne))
-      .then((res) => console.log(res));
+      .then(async (response) => {
+        if (!response.ok) {
+          throw new Error(`Server responded with status ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(() => {
+        setModal({
+          show: true,
+          status: "success",
+          message:
+            "Thanks! Your message has been sent. We'll get back to you soon.",
+        });
+        setProjectData({
+          fullname: "",
+          email: "",
+          service: "",
+          details: "",
+        });
+      })
+      .catch((error) => {
+        setModal({
+          show: true,
+          status: "error",
+          message:
+            "Something went wrong sending your message. Please try again.",
+        });
+        console.error("Contact form submit error:", error);
+      });
   };
 
   return (
@@ -50,12 +84,12 @@ function Contact() {
                     onChange={(e) =>
                       setProjectData({
                         ...projectData,
-                        firstname: e.target.value,
+                        fullname: e.target.value,
                       })
                     }
                     type="text"
                     id="name"
-                    value={projectData.firstname}
+                    value={projectData.fullname}
                     placeholder="Tawanda Madanhire"
                     required
                   />
@@ -80,6 +114,7 @@ function Contact() {
                 <select
                   id="service"
                   required
+                  value={projectData.service}
                   onChange={(e) =>
                     setProjectData({ ...projectData, service: e.target.value })
                   }
@@ -172,7 +207,6 @@ function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {/* GitHub SVG Icon */}
                   <svg
                     className="social-icon"
                     width="22"
@@ -190,7 +224,6 @@ function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {/* LinkedIn SVG Icon */}
                   <svg
                     className="social-icon"
                     width="22"
@@ -207,6 +240,32 @@ function Contact() {
           </div>
         </div>
       </div>
+
+      {/* Response Modal */}
+      {modal.show && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div
+            className={`modal-box modal-${modal.status}`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button className="modal-close" onClick={closeModal}>
+              ✕
+            </button>
+            <div className="modal-icon">
+              {modal.status === "success" ? "✅" : "⚠️"}
+            </div>
+            <h3 className="modal-title">
+              {modal.status === "success"
+                ? "Message Sent"
+                : "Something Went Wrong"}
+            </h3>
+            <p className="modal-message">{modal.message}</p>
+            <button className="btn-submit modal-ok" onClick={closeModal}>
+              OK
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
