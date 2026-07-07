@@ -1,5 +1,5 @@
 /* Import theme first */
-@import './theme.css';
+@import "./theme.css";
 
 /* ============ CSS RESET ============ */
 *,
@@ -50,16 +50,29 @@ body {
 }
 
 /* ============ TYPOGRAPHY ============ */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--color-text-primary);
   line-height: 1.2;
   font-weight: 700;
 }
 
-h1 { font-size: 64px; }
-h2 { font-size: 48px; }
-h3 { font-size: 24px; }
-h4 { font-size: 20px; }
+h1 {
+  font-size: 64px;
+}
+h2 {
+  font-size: 48px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 20px;
+}
 
 p {
   color: var(--color-text-secondary);
@@ -84,8 +97,9 @@ a {
 
 /* ============ SMOOTH THEME TRANSITIONS ============ */
 * {
-  transition: background-color 0.3s ease,
-              color 0.3s ease,
-              border-color 0.3s ease,
-              box-shadow 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
