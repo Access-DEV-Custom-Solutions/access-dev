@@ -130,6 +130,26 @@
   box-shadow: 0 4px 15px rgba(35, 85, 225, 0.3);
 }
 
+/* ============ DASHBOARD LINK ============ */
+.dashboard-link {
+  background: transparent;
+  color: #4F7DF3;
+  border: 1.5px solid #4F7DF3;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font-family);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+.dashboard-link:hover {
+  background: rgba(79, 125, 243, 0.08);
+  transform: translateY(-2px);
+}
+
 /* Show/Hide on devices */
 .desktop-only {
   display: flex;
@@ -254,6 +274,13 @@
   }
 
   .navbar-links .btn-create-account {
+    padding: 14px 32px;
+    font-size: 16px;
+    border-radius: 12px;
+    margin-top: -12px;
+  }
+
+  .navbar-links .dashboard-link {
     padding: 14px 32px;
     font-size: 16px;
     border-radius: 12px;

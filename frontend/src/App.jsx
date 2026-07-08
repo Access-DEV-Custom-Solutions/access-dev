@@ -18,7 +18,10 @@ import MobileDev from "./pages/services/MobileDev";
 import WebDev from "./pages/services/WebDev";
 import WebRedesign from "./pages/services/WebRedesign";
 import AISolutions from "./pages/services/AISolutions";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from './pages/Dashboard';
+import MyProjects from './pages/MyProjects';
+import ProjectDetail from './pages/ProjectDetail';
+
 
 // Page transition wrapper
 function PageTransition({ children }) {
@@ -36,6 +39,9 @@ function PageTransition({ children }) {
 
 function AnimatedRoutes() {
   const location = useLocation();
+
+  // Routes that should NOT have footer
+  const noFooterRoutes = [];
 
   return (
     <AnimatePresence mode="wait">
@@ -72,13 +78,15 @@ function AnimatedRoutes() {
             </PageTransition>
           }
         />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/services/mobile" element={<MobileDev />} />
-        <Route path="/services/web" element={<WebDev />} />
-        <Route path="/services/redesign" element={<WebRedesign />} />
-        <Route path="/services/ai" element={<AISolutions />} />
+        <Route path="/signup" element={<PageTransition><SignUp /></PageTransition>} />
+        <Route path="/signin" element={<PageTransition><SignIn /></PageTransition>} />
+        <Route path="/services/mobile" element={<PageTransition><MobileDev /></PageTransition>} />
+        <Route path="/services/web" element={<PageTransition><WebDev /></PageTransition>} />
+        <Route path="/services/redesign" element={<PageTransition><WebRedesign /></PageTransition>} />
+        <Route path="/services/ai" element={<PageTransition><AISolutions /></PageTransition>} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/my-projects" element={<PageTransition><MyProjects /></PageTransition>} />
+        <Route path="/projects/:id" element={<PageTransition><ProjectDetail /></PageTransition>} />
       </Routes>
     </AnimatePresence>
   );
@@ -101,9 +109,11 @@ function App() {
 
   return (
     <Router>
-      <div className="app">
+      <div className="app" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Navbar theme={theme} toggleTheme={toggleTheme} />
-        <AnimatedRoutes />
+        <main style={{ flex: 1 }}>
+          <AnimatedRoutes />
+        </main>
         <Footer />
       </div>
     </Router>

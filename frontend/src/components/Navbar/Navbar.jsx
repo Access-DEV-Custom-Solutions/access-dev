@@ -5,7 +5,16 @@ import './Navbar.css'
 function Navbar({ theme, toggleTheme }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
+  
+  // Check if user is logged in
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
+  useEffect(() => {
+    const token = localStorage.getItem('access_token')
+    setIsLoggedIn(!!token)
+  }, [])
+
+  // Show navbar when user scrolls down
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 100) {
@@ -46,27 +55,75 @@ function Navbar({ theme, toggleTheme }) {
           <Link to="/about" onClick={closeMenu}>About</Link>
           <Link to="/contact" onClick={closeMenu}>Contact</Link>
           
+          {/* Mobile-only Dashboard */}
+          {isLoggedIn && (
+            <Link to="/dashboard" className="dashboard-link mobile-only" onClick={closeMenu}>
+              Dashboard
+            </Link>
+          )}
+          
           {/* Mobile-only buttons */}
-          <Link to="/signin" className="btn-signin mobile-only" onClick={closeMenu}>
-            Sign In
-          </Link>
-          <Link to="/signup" className="btn-create-account mobile-only" onClick={closeMenu}>
-            Create Account
-          </Link>
+          {!isLoggedIn ? (
+            <>
+              <Link to="/signin" className="btn-signin mobile-only" onClick={closeMenu}>
+                Sign In
+              </Link>
+              <Link to="/signup" className="btn-create-account mobile-only" onClick={closeMenu}>
+                Create Account
+              </Link>
+            </>
+          ) : (
+            <button 
+              className="btn-signin mobile-only" 
+              onClick={() => {
+                localStorage.removeItem('access_token')
+                localStorage.removeItem('user_email')
+                setIsLoggedIn(false)
+                closeMenu()
+                window.location.href = '/'
+              }}
+            >
+              Sign Out
+            </button>
+          )}
         </div>
 
         {/* RIGHT SIDE */}
         <div className="navbar-actions">
           
-          {/* Sign In Button */}
-          <Link to="/signin" className="btn-signin desktop-only">
-            Sign In
-          </Link>
-          
-          {/* Create Account Button */}
-          <Link to="/signup" className="btn-create-account desktop-only">
-            Create Account
-          </Link>
+          {isLoggedIn ? (
+            <>
+              {/* Dashboard Button - Desktop */}
+              <Link to="/dashboard" className="dashboard-link desktop-only">
+                Dashboard
+              </Link>
+              
+              {/* Sign Out Button - Desktop */}
+              <button 
+                className="btn-signin desktop-only"
+                onClick={() => {
+                  localStorage.removeItem('access_token')
+                  localStorage.removeItem('user_email')
+                  setIsLoggedIn(false)
+                  window.location.href = '/'
+                }}
+              >
+                Sign Out
+              </button>
+            </>
+          ) : (
+            <>
+              {/* Sign In Button - Desktop */}
+              <Link to="/signin" className="btn-signin desktop-only">
+                Sign In
+              </Link>
+              
+              {/* Create Account Button - Desktop */}
+              <Link to="/signup" className="btn-create-account desktop-only">
+                Create Account
+              </Link>
+            </>
+          )}
           
           {/* Theme Toggle */}
           <button 
