@@ -27,7 +27,7 @@ function SignUp() {
         setIsSubmitting(false);
         setIsSuccess(true);
         setTimeout(() => {
-          navigate("/contact", {
+          navigate("/signin", {
             state: {
               fromSignup: true,
               userName: formData.fullname,
@@ -126,7 +126,7 @@ function SignUp() {
                 </svg>
               </motion.div>
               <h2>Account Created!</h2>
-              <p>Redirecting you to request your custom solution...</p>
+              <p>Redirecting you to signin...</p>
             </motion.div>
           ) : (
             <motion.form
