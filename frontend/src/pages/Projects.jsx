@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import './Projects.css'
 
 function Projects() {
   const [activeFilter, setActiveFilter] = useState('all')
