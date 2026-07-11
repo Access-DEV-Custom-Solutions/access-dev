@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import './DashboardLayout.css'
 
 function DashboardLayout({ children }) {
   const location = useLocation()

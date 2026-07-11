@@ -40,9 +40,6 @@ function PageTransition({ children }) {
 function AnimatedRoutes() {
   const location = useLocation();
 
-  // Routes that should NOT have footer
-  const noFooterRoutes = [];
-
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
@@ -109,9 +106,10 @@ function App() {
 
   return (
     <Router>
-      <div className="app" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <div className="app flex min-h-screen flex-col bg-[var(--color-bg)] text-[var(--color-text-secondary)]">
+        <a className="skip-link" href="#main-content">Skip to content</a>
         <Navbar theme={theme} toggleTheme={toggleTheme} />
-        <main style={{ flex: 1 }}>
+        <main id="main-content" className="flex-1" tabIndex="-1">
           <AnimatedRoutes />
         </main>
         <Footer />

@@ -1,205 +1,378 @@
-import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import './Hero.css'
+import { Link } from "react-router-dom";
+import { ArrowRight, ChevronDown } from "lucide-react";
 
 function Hero() {
-
-  useEffect(() => {
-    const container = document.querySelector('.hero-particles')
-    if (container) {
-      for (let i = 0; i < 40; i++) {
-        const particle = document.createElement('div')
-        particle.className = 'particle'
-        particle.style.left = Math.random() * 100 + '%'
-        particle.style.top = Math.random() * 100 + '%'
-        particle.style.animationDelay = Math.random() * 5 + 's'
-        particle.style.animationDuration = (Math.random() * 6 + 4) + 's'
-        particle.style.width = (Math.random() * 4 + 2) + 'px'
-        particle.style.height = particle.style.width
-        particle.style.setProperty('--particle-color', ['#2355E1', '#008F88', '#8B5CF6', '#E255A1'][Math.floor(Math.random() * 4)])
-        container.appendChild(particle)
-      }
-    }
-
-    // Create floating code snippets
-    
-  }, [])
-
   return (
-    <section id="home" className="hero">
-      {/* Animated Particles */}
-      <div className="hero-particles"></div>
+    <section id="home" className="adev-hero">
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
-      {/* Floating Code Snippets */}
-      <div className="hero-floating-code"></div>
+        .adev-hero {
+          --adev-ink: #080b14;
+          --adev-surface: #10162a;
+          --adev-blue: #2355E1;
+          --adev-teal: #008F88;
+          --adev-violet: #8B5CF6;
+          --adev-pink: #E255A1;
+          --adev-amber: #F59E0B;
+          --adev-text: #F5F7FF;
+          --adev-muted: #8891A8;
+          --adev-border: rgba(255,255,255,0.09);
 
-      {/* Glow Orbs */}
-      <div className="glow-orb orb-1"></div>
-      <div className="glow-orb orb-2"></div>
-      <div className="glow-orb orb-3"></div>
+          position: relative;
+          min-height: 100vh;
+          background: var(--adev-ink);
+          color: var(--adev-text);
+          font-family: 'Inter', sans-serif;
+          overflow: hidden;
+          padding: 0 6vw;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
 
-      {/* Grid Pattern */}
-      <div className="hero-grid"></div>
+        .adev-hero::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background:
+            radial-gradient(60% 50% at 82% 18%, rgba(139,92,246,0.16), transparent 70%),
+            radial-gradient(50% 40% at 12% 85%, rgba(35,85,225,0.14), transparent 70%);
+          pointer-events: none;
+        }
+        .adev-hero::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background-image:
+            linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+          background-size: 48px 48px;
+          mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 40%, transparent 90%);
+          pointer-events: none;
+        }
 
-      {/* Scan Line */}
-      <div className="hero-scan-line"></div>
+        .adev-container {
+          position: relative;
+          z-index: 1;
+          max-width: 1280px;
+          margin: 0 auto;
+          width: 100%;
+          display: grid;
+          grid-template-columns: 1.05fr 0.95fr;
+          gap: 4vw;
+          align-items: center;
+          padding: 7rem 0 5rem;
+        }
 
-      <div className="hero-container">
-        
-        {/* LEFT: Text Content */}
-        <div className="hero-content">
-          <div className="hero-badge-wrap">
-            <span className="hero-badge">
-              <span className="badge-dot"></span>
-              Available for Projects
+        /* ---------- left: content ---------- */
+        .adev-badges { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.75rem; }
+        .adev-badge {
+          display: inline-flex; align-items: center; gap: 0.5rem;
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 0.72rem; letter-spacing: 0.02em;
+          padding: 0.45rem 0.85rem;
+          border: 1px solid var(--adev-border);
+          border-radius: 100px;
+          color: var(--adev-muted);
+          background: rgba(255,255,255,0.03);
+        }
+        .adev-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--adev-blue); flex-shrink: 0; }
+        .adev-badge-dot.amber { background: var(--adev-amber); }
+
+        .adev-title {
+          font-family: 'Space Grotesk', sans-serif;
+          font-weight: 700;
+          font-size: clamp(2.6rem, 4.6vw, 4.1rem);
+          line-height: 1.05;
+          letter-spacing: -0.02em;
+          margin: 0 0 1.4rem;
+        }
+        .adev-title span { display: block; }
+        .adev-title .grad {
+          background: linear-gradient(90deg, var(--adev-blue) 10%, var(--adev-violet) 55%, var(--adev-pink) 95%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+        }
+
+        .adev-subtitle {
+          font-size: 1.05rem;
+          line-height: 1.7;
+          color: var(--adev-muted);
+          max-width: 34rem;
+          margin: 0 0 2.25rem;
+        }
+        .adev-subtitle b { color: var(--adev-text); font-weight: 600; }
+
+        .adev-cta-row { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-bottom: 3rem; }
+        .adev-btn-primary, .adev-btn-secondary {
+          display: inline-flex; align-items: center; gap: 0.5rem;
+          font-family: 'Inter', sans-serif;
+          font-weight: 600; font-size: 0.95rem;
+          padding: 0.85rem 1.5rem;
+          border-radius: 10px;
+          text-decoration: none;
+          transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+        }
+        .adev-btn-primary {
+          color: #fff;
+          background: linear-gradient(90deg, var(--adev-blue), #3d63e8);
+          box-shadow: 0 8px 24px -8px rgba(35,85,225,0.55);
+        }
+        .adev-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -8px rgba(35,85,225,0.7); }
+        .adev-btn-primary svg { transition: transform 0.18s ease; }
+        .adev-btn-primary:hover svg { transform: translateX(3px); }
+
+        .adev-btn-secondary {
+          color: var(--adev-text);
+          border: 1px solid var(--adev-border);
+          background: rgba(255,255,255,0.02);
+        }
+        .adev-btn-secondary:hover { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.05); }
+
+        .adev-stats { display: flex; align-items: center; gap: 1.75rem; }
+        .adev-stat { display: flex; flex-direction: column; gap: 0.2rem; }
+        .adev-stat-num {
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 1.5rem; font-weight: 700;
+        }
+        .adev-stat-label { font-size: 0.78rem; color: var(--adev-muted); }
+        .adev-stat-divider { width: 1px; height: 2.2rem; background: var(--adev-border); }
+
+        /* ---------- right: code window (signature element) ---------- */
+        .adev-code-wrap { position: relative; }
+        .adev-code-glow {
+          position: absolute; inset: -10%;
+          background: radial-gradient(50% 50% at 50% 45%, rgba(35,85,225,0.22), transparent 70%);
+          filter: blur(20px);
+          pointer-events: none;
+          animation: adev-glow-pulse 5s ease-in-out infinite;
+        }
+        @keyframes adev-glow-pulse { 0%,100% { opacity: 0.7; } 50% { opacity: 1; } }
+
+        .adev-code-card {
+          position: relative;
+          border: 1px solid var(--adev-border);
+          background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
+          border-radius: 16px;
+          overflow: hidden;
+          backdrop-filter: blur(6px);
+          box-shadow: 0 30px 60px -25px rgba(0,0,0,0.6);
+        }
+
+        .adev-code-head {
+          display: flex; align-items: center; gap: 0.9rem;
+          padding: 0.85rem 1.1rem;
+          border-bottom: 1px solid var(--adev-border);
+        }
+        .adev-code-dots { display: flex; gap: 0.4rem; }
+        .adev-code-dots span { width: 9px; height: 9px; border-radius: 50%; }
+        .adev-code-dots span:nth-child(1) { background: var(--adev-pink); }
+        .adev-code-dots span:nth-child(2) { background: var(--adev-amber); }
+        .adev-code-dots span:nth-child(3) { background: var(--adev-teal); }
+        .adev-code-file {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 0.75rem;
+          color: var(--adev-muted);
+        }
+        .adev-code-status {
+          margin-left: auto;
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 0.68rem;
+          color: var(--adev-teal);
+          white-space: nowrap;
+        }
+
+        .adev-code-body {
+          margin: 0;
+          padding: 1.25rem 1.4rem;
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 0.84rem;
+          line-height: 1.85;
+          overflow-x: auto;
+        }
+        .tok-kw { color: var(--adev-blue); }
+        .tok-tag { color: var(--adev-pink); }
+        .tok-attr { color: var(--adev-teal); }
+        .tok-str { color: var(--adev-amber); }
+        .tok-fn { color: var(--adev-violet); }
+        .tok-punc { color: var(--adev-muted); }
+        .tok-plain { color: var(--adev-text); }
+        .adev-cursor {
+          display: inline-block; width: 7px; height: 1.05em;
+          background: var(--adev-blue);
+          vertical-align: -0.15em;
+          animation: adev-blink 1s step-end infinite;
+        }
+        @keyframes adev-blink { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
+
+        .adev-code-preview {
+          display: flex; align-items: center; justify-content: space-between;
+          gap: 1rem;
+          padding: 1rem 1.4rem;
+          border-top: 1px dashed var(--adev-border);
+          background: rgba(255,255,255,0.02);
+        }
+        .adev-code-preview-label {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 0.68rem;
+          letter-spacing: 0.05em;
+          text-transform: uppercase;
+          color: var(--adev-muted);
+        }
+        .adev-code-preview-btn {
+          display: inline-flex; align-items: center; gap: 0.4rem;
+          font-size: 0.85rem; font-weight: 600;
+          color: #fff;
+          padding: 0.55rem 1.1rem;
+          border-radius: 8px;
+          background: linear-gradient(90deg, var(--adev-blue), var(--adev-violet));
+          pointer-events: none;
+        }
+
+        /* ---------- scroll cue ---------- */
+        .adev-scroll {
+          position: relative; z-index: 1;
+          display: flex; align-items: center; gap: 0.5rem;
+          margin: 0 auto; padding-bottom: 2rem;
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 0.72rem; color: var(--adev-muted);
+        }
+        .adev-scroll svg { animation: adev-bob 1.8s ease-in-out infinite; }
+        @keyframes adev-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+
+        @media (prefers-reduced-motion: reduce) {
+          .adev-scroll svg, .adev-cursor, .adev-code-glow { animation: none; }
+        }
+
+        @media (max-width: 960px) {
+          .adev-container { grid-template-columns: 1fr; padding-top: 6rem; }
+          .adev-hero { padding: 0 5vw; }
+          .adev-code-body { font-size: 0.78rem; }
+        }
+      `}</style>
+
+      <div className="adev-container">
+        {/* LEFT: content */}
+        <div>
+          <div className="adev-badges">
+            <span className="adev-badge">
+              <span className="adev-badge-dot" />
+              Available for new projects
             </span>
-            <span className="hero-badge hero-badge-outline">
-              <span className="badge-dot" style={{ background: '#F59E0B' }}></span>
-              Trusted by Clients
+            <span className="adev-badge">
+              <span className="adev-badge-dot amber" />
+              Trusted by clients across Zimbabwe
             </span>
           </div>
-          
-          <h1 className="hero-title">
-            <span className="title-line">Digital Solutions</span>
-            <span className="title-line gradient-text">That grows your Business</span>
+
+          <h1 className="adev-title">
+            <span>Digital Solutions</span>
+            <span className="grad">That Grow Your Business</span>
           </h1>
-          
-          <p className="hero-subtitle">
-            Your gateway to <span className="text-highlight">Mobile</span>, <span className="text-highlight">Web</span>, <span className="text-highlight">Web Redesign</span> & <span className="text-highlight">AI</span> solutions. We build technology that transforms ideas into reality.
+
+          <p className="adev-subtitle">
+            Your gateway to <b>mobile</b>, <b>web</b>, <b>web redesign</b> and{" "}
+            <b>AI</b> solutions — technology built to turn ideas into products
+            people actually use.
           </p>
-          
-          <div className="hero-buttons">
-            <Link to="/signup" className="btn-primary">
+
+          <div className="adev-cta-row">
+            <Link to="/signup" className="adev-btn-primary">
               <span>Get Started</span>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
+              <ArrowRight size={18} />
             </Link>
-            <a href="#services" className="btn-secondary">
+            <a href="#services" className="adev-btn-secondary">
               <span>Explore Services</span>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg>
+              <ChevronDown size={18} />
             </a>
           </div>
 
-          {/* Quick Stats */}
-          <div className="hero-stats">
-            <div className="hero-stat">
-              <span className="stat-number" data-count="50">15+</span>
-              <span className="stat-label">Projects Done</span>
+          <div className="adev-stats">
+            <div className="adev-stat">
+              <span className="adev-stat-num">15+</span>
+              <span className="adev-stat-label">Projects Shipped</span>
             </div>
-            <div className="stat-divider"></div>
-            <div className="hero-stat">
-              <span className="stat-number">100%</span>
-              <span className="stat-label">Client Satisfaction</span>
+            <div className="adev-stat-divider" />
+            <div className="adev-stat">
+              <span className="adev-stat-num">100%</span>
+              <span className="adev-stat-label">Client Satisfaction</span>
             </div>
-            <div className="stat-divider"></div>
-            <div className="hero-stat">
-              <span className="stat-number">4</span>
-              <span className="stat-label">Core Services</span>
+            <div className="adev-stat-divider" />
+            <div className="adev-stat">
+              <span className="adev-stat-num">4</span>
+              <span className="adev-stat-label">Core Services</span>
             </div>
           </div>
         </div>
 
-        {/* RIGHT: Tech Constellation */}
-        <div className="hero-visual">
-          <div className="constellation-system">
-            
-            <svg className="constellation-svg" viewBox="0 0 500 500">
-              <line className="const-line" x1="250" y1="250" x2="250" y2="40" />
-              <line className="const-line" x1="250" y1="250" x2="440" y2="150" />
-              <line className="const-line" x1="250" y1="250" x2="390" y2="420" />
-              <line className="const-line" x1="250" y1="250" x2="60" y2="380" />
-              <circle className="const-circle" cx="250" cy="250" r="195" />
-              <circle className="const-node" cx="250" cy="40" r="6" />
-              <circle className="const-node" cx="440" cy="150" r="6" />
-              <circle className="const-node" cx="390" cy="420" r="6" />
-              <circle className="const-node" cx="60" cy="380" r="6" />
-              {/* Extra connecting lines between outer nodes */}
-              <line className="const-line-outer" x1="250" y1="40" x2="440" y2="150" />
-              <line className="const-line-outer" x1="440" y1="150" x2="390" y2="420" />
-              <line className="const-line-outer" x1="390" y1="420" x2="60" y2="380" />
-              <line className="const-line-outer" x1="60" y1="380" x2="250" y2="40" />
-            </svg>
-
-            <div className="const-hub">
-              <div className="const-hub-core">
-                <span className="const-hub-text">&lt;/&gt;</span>
+        {/* RIGHT: code window that compiles into a live preview */}
+        <div className="adev-code-wrap">
+          <div className="adev-code-glow" />
+          <div className="adev-code-card">
+            <div className="adev-code-head">
+              <div className="adev-code-dots">
+                <span />
+                <span />
+                <span />
               </div>
-              <div className="const-hub-pulse p1"></div>
-              <div className="const-hub-pulse p2"></div>
-              <div className="const-hub-pulse p3"></div>
-              <div className="const-hub-pulse p4"></div>
+              <span className="adev-code-file">Hero.jsx</span>
+              <span className="adev-code-status">✓ build passing</span>
             </div>
 
-            <div className="const-icon ci-top">
-              <div className="const-card">
-                <span className="const-emoji">
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-                    <line x1="12" y1="18" x2="12.01" y2="18"></line>
-                  </svg>
-                </span>
-                <span className="const-label">Mobile Dev</span>
-              </div>
-            </div>
+            <pre className="adev-code-body">
+              <code>
+                <span className="tok-kw">export default function</span>{" "}
+                <span className="tok-fn">Hero</span>
+                <span className="tok-punc">() {"{"}</span>
+                {"\n  "}
+                <span className="tok-kw">return</span>{" "}
+                <span className="tok-punc">(</span>
+                {"\n    "}
+                <span className="tok-punc">{"<"}</span>
+                <span className="tok-tag">Button</span>
+                {"\n      "}
+                <span className="tok-attr">variant</span>
+                <span className="tok-punc">=</span>
+                <span className="tok-str">"gradient"</span>
+                {"\n      "}
+                <span className="tok-attr">onClick</span>
+                <span className="tok-punc">{"={"}</span>
+                <span className="tok-fn">launchProject</span>
+                <span className="tok-punc">{"}"}</span>
+                {"\n    "}
+                <span className="tok-punc">{">"}</span>
+                {"\n      "}
+                <span className="tok-plain">Get Started</span>
+                {"\n    "}
+                <span className="tok-punc">{"</"}</span>
+                <span className="tok-tag">Button</span>
+                <span className="tok-punc">{">"}</span>
+                {"\n  "}
+                <span className="tok-punc">)</span>
+                {"\n"}
+                <span className="tok-punc">{"}"}</span>
+                <span className="adev-cursor" />
+              </code>
+            </pre>
 
-            <div className="const-icon ci-right">
-              <div className="const-card">
-                <span className="const-emoji">
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="2" y1="12" x2="22" y2="12"></line>
-                    <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"></path>
-                  </svg>
-                </span>
-                <span className="const-label">Website Dev</span>
-              </div>
+            <div className="adev-code-preview">
+              <span className="adev-code-preview-label">Preview</span>
+              <span className="adev-code-preview-btn">
+                Get Started <ArrowRight size={14} />
+              </span>
             </div>
-
-            <div className="const-icon ci-bottom">
-              <div className="const-card">
-                <span className="const-emoji">
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="23 4 23 10 17 10"></polyline>
-                    <polyline points="1 20 1 14 7 14"></polyline>
-                    <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"></path>
-                  </svg>
-                </span>
-                <span className="const-label">Website Redesign</span>
-              </div>
-            </div>
-
-            <div className="const-icon ci-left">
-              <div className="const-card">
-                <span className="const-emoji">
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="4" y="4" width="16" height="16" rx="2"></rect>
-                    <path d="M9 1v3"></path><path d="M15 1v3"></path><path d="M9 20v3"></path><path d="M15 20v3"></path>
-                    <path d="M20 9h3"></path><path d="M20 14h3"></path><path d="M1 9h3"></path><path d="M1 14h3"></path>
-                    <circle cx="12" cy="12" r="2"></circle>
-                  </svg>
-                </span>
-                <span className="const-label">AI Solutions</span>
-              </div>
-            </div>
-
           </div>
         </div>
-
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="scroll-indicator">
-        <div className="scroll-mouse">
-          <div className="scroll-wheel"></div>
-        </div>
-        <span className="scroll-text">Scroll to explore</span>
+      <div className="adev-scroll">
+        <span>Scroll to explore</span>
+        <ChevronDown size={14} />
       </div>
     </section>
-  )
+  );
 }
 
-export default Hero
+export default Hero;

@@ -1,224 +1,226 @@
-import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
-import './PackageBuilder.css'
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { Package, Boxes, Check, ArrowRight } from "lucide-react";
+
+const PACKAGES = [
+  {
+    id: "off-shelf",
+    icon: Package,
+    file: "off-the-shelf.pkg",
+    title: "Off the Shelf",
+    subtitle: "Ready-Made Solutions",
+    description:
+      "Pre-built, battle-tested solutions you can deploy immediately — for businesses that need quick, reliable results.",
+    features: [
+      "Quick deployment within days",
+      "Proven & tested solutions",
+      "Cost-effective pricing",
+      "Regular updates included",
+      "Basic customization available",
+      "Community support",
+    ],
+    color: "var(--adev-blue)",
+    link: "/projects",
+    btnText: "View Projects",
+    badge: "Popular",
+  },
+  {
+    id: "custom",
+    icon: Boxes,
+    file: "custom-build.pkg",
+    title: "Custom Made",
+    subtitle: "Tailored to Your Needs",
+    description:
+      "Bespoke solutions built from the ground up for your business specifically — full control, no shortcuts.",
+    features: [
+      "Fully customized development",
+      "Dedicated development team",
+      "Unlimited revisions",
+      "Proprietary source code",
+      "Scalable architecture",
+      "Priority support 24/7",
+    ],
+    color: "var(--adev-violet)",
+    link: "/signup",
+    btnText: "Get Started",
+    badge: "Premium",
+  },
+];
 
 function PackageBuilder() {
-
-  const packages = [
-    {
-      id: 'off-shelf',
-      icon: (
-        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"></path>
-          <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-          <line x1="12" y1="22.08" x2="12" y2="12"></line>
-        </svg>
-      ),
-      title: 'Off the Shelf',
-      subtitle: 'Ready-Made Solutions',
-      description: 'Pre-built, battle-tested solutions that you can deploy immediately. Perfect for businesses needing quick, reliable results.',
-      features: [
-        'Quick deployment within days',
-        'Proven & tested solutions',
-        'Cost-effective pricing',
-        'Regular updates included',
-        'Basic customization available',
-        'Community support'
-      ],
-      color: '#2355E1',
-      link: '/projects',
-      btnText: 'View Projects',
-      badge: 'Popular',
-      badgeColor: '#39D353'
-    },
-    {
-      id: 'custom',
-      icon: (
-        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon>
-          <line x1="12" y1="22" x2="12" y2="15.5"></line>
-          <polyline points="22 8.5 12 15.5 2 8.5"></polyline>
-          <polyline points="2 8.5 12 2 22 8.5"></polyline>
-          <line x1="12" y1="2" x2="12" y2="9"></line>
-        </svg>
-      ),
-      title: 'Custom Made',
-      subtitle: 'Tailored to Your Needs',
-      description: 'Bespoke solutions built from the ground up specifically for your business. Full control, unlimited possibilities.',
-      features: [
-        'Fully customized development',
-        'Dedicated development team',
-        'Unlimited revisions',
-        'Proprietary source code',
-        'Scalable architecture',
-        'Priority support 24/7'
-      ],
-      color: '#8B5CF6',
-      link: '/signup',
-      btnText: 'Get Started',
-      badge: 'Premium',
-      badgeColor: '#F59E0B'
-    }
-  ]
-
   return (
-    <section id="package-builder" className="packages-section">
-      {/* Animated Background */}
-      <div className="packages-bg">
-        <div className="packages-glow packages-glow-1"></div>
-        <div className="packages-glow packages-glow-2"></div>
-        <div className="packages-glow packages-glow-3"></div>
-        <div className="packages-grid-bg"></div>
-        <div className="packages-particles">
-          {[...Array(25)].map((_, i) => (
-            <div key={i} className="packages-particle"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 6}s`,
-                animationDuration: `${Math.random() * 6 + 4}s`,
-                width: `${Math.random() * 4 + 2}px`,
-                height: `${Math.random() * 4 + 2}px`,
-                '--particle-color': ['#2355E1', '#8B5CF6', '#008F88'][Math.floor(Math.random() * 3)],
-              }}
-            ></div>
-          ))}
-        </div>
-        <div className="packages-scan-line"></div>
-      </div>
+    <section id="package-builder" className="pkg-section">
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
-      <div className="packages-container">
-        
-        {/* Header */}
-        <motion.div 
-          className="packages-header"
-          initial={{ opacity: 0, y: 30 }}
+        .pkg-section {
+          --adev-ink: #080b14;
+          --adev-blue: #2355E1;
+          --adev-teal: #008F88;
+          --adev-violet: #8B5CF6;
+          --adev-pink: #E255A1;
+          --adev-amber: #F59E0B;
+          --adev-text: #F5F7FF;
+          --adev-muted: #8891A8;
+          --adev-border: rgba(255,255,255,0.09);
+
+          position: relative;
+          background: var(--adev-ink);
+          color: var(--adev-text);
+          font-family: 'Inter', sans-serif;
+          padding: 6.5rem 6vw;
+          overflow: hidden;
+        }
+
+        .pkg-section::before {
+          content: '';
+          position: absolute; inset: 0;
+          background: radial-gradient(55% 45% at 50% 0%, rgba(35,85,225,0.14), transparent 70%);
+          pointer-events: none;
+        }
+
+        .pkg-container { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; }
+
+        .pkg-header { text-align: center; max-width: 34rem; margin: 0 auto 3.5rem; }
+        .pkg-eyebrow {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase;
+          color: var(--adev-blue);
+          margin: 0 0 0.75rem;
+        }
+        .pkg-title {
+          font-family: 'Space Grotesk', sans-serif;
+          font-weight: 700;
+          font-size: clamp(2rem, 3.2vw, 2.75rem);
+          letter-spacing: -0.02em;
+          margin: 0 0 0.75rem;
+        }
+        .pkg-subtitle { color: var(--adev-muted); margin: 0; }
+
+        .pkg-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        @media (max-width: 780px) { .pkg-grid { grid-template-columns: 1fr; } }
+
+        .pkg-card {
+          position: relative;
+          border: 1px solid var(--adev-border);
+          background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.01));
+          border-radius: 18px;
+          padding: 2rem;
+          transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+        .pkg-card:hover { border-color: var(--card-color); transform: translateY(-4px); }
+
+        .pkg-card-head {
+          display: flex; align-items: center; justify-content: space-between;
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 0.72rem; color: var(--adev-muted);
+          padding-bottom: 1rem; margin-bottom: 1.5rem;
+          border-bottom: 1px dashed var(--adev-border);
+        }
+        .pkg-badge {
+          font-size: 0.68rem; font-weight: 600;
+          padding: 0.25rem 0.6rem; border-radius: 100px;
+          background: color-mix(in srgb, var(--card-color) 18%, transparent);
+          color: var(--card-color);
+        }
+
+        .pkg-icon-chip {
+          width: 3rem; height: 3rem;
+          display: flex; align-items: center; justify-content: center;
+          border-radius: 10px;
+          background: color-mix(in srgb, var(--card-color) 16%, transparent);
+          color: var(--card-color);
+          margin-bottom: 1.25rem;
+        }
+
+        .pkg-card-subtitle { font-size: 0.82rem; font-weight: 600; color: var(--card-color); margin: 0 0 0.35rem; }
+        .pkg-card-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 600; margin: 0 0 0.75rem; }
+        .pkg-desc { font-size: 0.92rem; line-height: 1.65; color: var(--adev-muted); margin: 0 0 1.5rem; }
+
+        .pkg-features { display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 1.75rem; }
+        .pkg-feature { display: flex; align-items: center; gap: 0.6rem; font-size: 0.88rem; }
+        .pkg-feature-check {
+          width: 1.15rem; height: 1.15rem; flex-shrink: 0;
+          display: flex; align-items: center; justify-content: center;
+          border-radius: 50%;
+          background: color-mix(in srgb, var(--card-color) 20%, transparent);
+          color: var(--card-color);
+        }
+
+        .pkg-btn {
+          display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+          width: 100%;
+          font-weight: 600; font-size: 0.95rem;
+          padding: 0.85rem 1.5rem;
+          border-radius: 10px;
+          background: var(--card-color);
+          color: #fff;
+          text-decoration: none;
+          transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+        .pkg-btn:hover { transform: translateY(-2px); }
+        .pkg-btn svg { transition: transform 0.18s ease; }
+        .pkg-btn:hover svg { transform: translateX(3px); }
+      `}</style>
+
+      <div className="pkg-container">
+        <motion.div
+          className="pkg-header"
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
         >
-          <motion.div 
-            className="packages-header-icon"
-            initial={{ scale: 0, rotate: -45 }}
-            whileInView={{ scale: 1, rotate: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1, type: "spring" }}
-          >
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="20 12 20 22 4 22 4 12"></polyline>
-              <rect x="2" y="7" width="20" height="5"></rect>
-              <line x1="12" y1="22" x2="12" y2="7"></line>
-              <path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"></path>
-              <path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"></path>
-            </svg>
-          </motion.div>
-          <h2 className="packages-title">Package Solutions</h2>
-          <p className="packages-subtitle">Choose the right solution for your business</p>
+          <p className="pkg-eyebrow">Two ways to work with us</p>
+          <h2 className="pkg-title">Package Solutions</h2>
+          <p className="pkg-subtitle">Choose the right fit for your business</p>
         </motion.div>
 
-        {/* Packages Grid */}
-        <div className="packages-grid">
-          {packages.map((pkg, index) => (
-            <motion.div 
-              key={pkg.id} 
-              className="package-card"
-              style={{ '--package-color': pkg.color }}
-              initial={{ opacity: 0, y: 60, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        <div className="pkg-grid">
+          {PACKAGES.map((pkg, i) => (
+            <motion.div
+              key={pkg.id}
+              className="pkg-card"
+              style={{ "--card-color": pkg.color }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, delay: index * 0.2, type: "spring", stiffness: 80 }}
-              whileHover={{ y: -10 }}
+              transition={{ duration: 0.5, delay: i * 0.12 }}
             >
-              {/* Glow border */}
-              <div className="package-glow-border"></div>
-              
-              {/* Badge */}
-              <motion.div 
-                className="package-badge"
-                style={{ background: pkg.badgeColor }}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 + index * 0.2 }}
-              >
-                <span className="badge-star">✦</span>
-                {pkg.badge}
-              </motion.div>
-
-              {/* Icon */}
-              <motion.div 
-                className="package-icon-wrap"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ type: "spring", stiffness: 200 }}
-              >
-                <div className="package-icon-box" style={{ color: pkg.color }}>
-                  {pkg.icon}
-                </div>
-                <div className="package-icon-ring" style={{ borderColor: pkg.color }}></div>
-                <div className="package-icon-ring-2" style={{ borderColor: pkg.color }}></div>
-              </motion.div>
-
-              {/* Title & Subtitle */}
-              <div className="package-header-text">
-                <h3 className="package-title">{pkg.title}</h3>
-                <p className="package-subtitle-text" style={{ color: pkg.color }}>
-                  {pkg.subtitle}
-                </p>
+              <div className="pkg-card-head">
+                <span>{pkg.file}</span>
+                <span className="pkg-badge">{pkg.badge}</span>
               </div>
-              
-              <p className="package-description">{pkg.description}</p>
 
-              {/* Divider */}
-              <div className="package-divider"></div>
+              <div className="pkg-icon-chip">
+                <pkg.icon size={24} />
+              </div>
 
-              {/* Features List */}
-              <div className="package-features">
-                {pkg.features.map((feature, i) => (
-                  <motion.div 
-                    key={i} 
-                    className="package-feature"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: 0.5 + (i * 0.08) }}
-                  >
-                    <span className="feature-check" style={{ color: pkg.color }}>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
+              <p className="pkg-card-subtitle">{pkg.subtitle}</p>
+              <h3 className="pkg-card-title">{pkg.title}</h3>
+              <p className="pkg-desc">{pkg.description}</p>
+
+              <div className="pkg-features">
+                {pkg.features.map((feature) => (
+                  <div key={feature} className="pkg-feature">
+                    <span className="pkg-feature-check">
+                      <Check size={12} strokeWidth={3} />
                     </span>
-                    <span className="feature-text">{feature}</span>
-                  </motion.div>
+                    <span>{feature}</span>
+                  </div>
                 ))}
               </div>
 
-              {/* CTA Button */}
-              <motion.div
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-              >
-                <Link to={pkg.link} className="package-btn" style={{ 
-                  background: pkg.color,
-                  boxShadow: `0 8px 30px ${pkg.color}40`
-                }}>
-                  <span>{pkg.btnText}</span>
-                  <motion.svg 
-                    width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  >
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </motion.svg>
-                </Link>
-              </motion.div>
+              <Link to={pkg.link} className="pkg-btn">
+                <span>{pkg.btnText}</span>
+                <ArrowRight size={17} />
+              </Link>
             </motion.div>
           ))}
         </div>
-
       </div>
     </section>
-  )
+  );
 }
 
-export default PackageBuilder
+export default PackageBuilder;

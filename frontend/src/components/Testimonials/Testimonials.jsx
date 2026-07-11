@@ -1,6 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import "./Testimonials.css";
 
 function Testimonials() {
   const testimonials = [

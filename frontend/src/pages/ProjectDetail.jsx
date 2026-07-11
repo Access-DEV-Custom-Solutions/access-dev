@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useParams, Link } from 'react-router-dom'
-import './ProjectDetail.css'
 
 function ProjectDetail() {
   const { id } = useParams()

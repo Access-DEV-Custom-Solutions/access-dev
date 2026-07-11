@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import './About.css'
 
 function About() {
   const values = [

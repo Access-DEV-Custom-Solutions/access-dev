@@ -1,71 +1,84 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
-import "./SignUp.css";
+
+const API_BASE = "https://access-dev.onrender.com";
+// const API_BASE = "http://127.0.0.1:8000";
 
 function SignUp() {
   const [formData, setFormData] = useState({
     fullname: "",
     email: "",
+    whatsapp_number: "",
+    password: "",
+    confirmPassword: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const navigate = useNavigate();
+  const updateField = (field) => (event) =>
+    setFormData((current) => ({ ...current, [field]: event.target.value }));
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setErrorMessage("");
+    if (formData.password !== formData.confirmPassword) {
+      setErrorMessage("Passwords do not match.");
+      return;
+    }
     setIsSubmitting(true);
-
-    fetch("https://access-dev.onrender.com/users", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Account created:", data);
-        setIsSubmitting(false);
-        setIsSuccess(true);
-        setTimeout(() => {
-          navigate("/signin", {
-            state: {
-              fromSignup: true,
-              userName: formData.fullname,
-            },
-          });
-        }, 2000);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        setIsSubmitting(false);
+    try {
+      const response = await fetch(`${API_BASE}/users`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullname: formData.fullname,
+          email: formData.email,
+          whatsapp_number: formData.whatsapp_number,
+          password: formData.password,
+        }),
       });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok)
+        throw new Error(data.detail || "We could not create your account.");
+      setIsSuccess(true);
+      setTimeout(() => navigate("/signin"), 1800);
+    } catch (error) {
+      setErrorMessage(error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
+  const fields = [
+    ["fullname", "Full Name", "text", "Tawanda Madanhire", "name"],
+    ["email", "Email Address", "email", "tawanda@example.com", "email"],
+    ["whatsapp_number", "WhatsApp Number", "tel", "+263 77 123 4567", "tel"],
+    [
+      "password",
+      "Password",
+      "password",
+      "At least 8 characters",
+      "new-password",
+    ],
+    [
+      "confirmPassword",
+      "Confirm Password",
+      "password",
+      "Re-enter your password",
+      "new-password",
+    ],
+  ];
 
   return (
     <section className="signup-page">
       <div className="signup-bg">
-        <div className="signup-glow signup-glow-1"></div>
-        <div className="signup-glow signup-glow-2"></div>
-        <div className="signup-glow signup-glow-3"></div>
-        <div className="signup-grid-pattern"></div>
-        <div className="signup-particles">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="signup-particle"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 6}s`,
-                animationDuration: `${Math.random() * 6 + 4}s`,
-                width: `${Math.random() * 3 + 2}px`,
-                height: `${Math.random() * 3 + 2}px`,
-              }}
-            ></div>
-          ))}
-        </div>
+        <div className="signup-glow signup-glow-1" />
+        <div className="signup-glow signup-glow-2" />
+        <div className="signup-glow signup-glow-3" />
+        <div className="signup-grid-pattern" />
       </div>
-
       <div className="signup-container">
         <motion.div
           className="signup-card"
@@ -85,7 +98,6 @@ function SignUp() {
               className="signup-logo-img"
             />
           </motion.div>
-
           <motion.div
             className="signup-header"
             initial={{ opacity: 0 }}
@@ -97,7 +109,6 @@ function SignUp() {
               Join ACCESS DEV to request custom solutions
             </p>
           </motion.div>
-
           {isSuccess ? (
             <motion.div
               className="success-message"
@@ -105,145 +116,54 @@ function SignUp() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ type: "spring" }}
             >
-              <motion.div
-                className="success-icon"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.2, type: "spring" }}
-              >
-                <svg
-                  width="60"
-                  height="60"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                </svg>
-              </motion.div>
+              <div className="success-icon">✓</div>
               <h2>Account Created!</h2>
-              <p>Redirecting you to signin...</p>
+              <p>Redirecting you to sign in...</p>
             </motion.div>
           ) : (
-            <motion.form
-              className="signup-form"
-              onSubmit={handleSubmit}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <div className="signup-form-group">
-                <label htmlFor="fullname">
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                  </svg>
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  id="fullname"
-                  placeholder="Tawanda Madanhire"
-                  value={formData.fullname}
-                  onChange={(e) =>
-                    setFormData({ ...formData, fullname: e.target.value })
-                  }
-                  required
-                />
-              </div>
-              <div className="signup-form-group">
-                <label htmlFor="email">
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                    <polyline points="22,6 12,13 2,6"></polyline>
-                  </svg>
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  placeholder="tawanda@example.com"
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
-                  required
-                />
-              </div>
-
-              <motion.button
-                type="submit"
-                className="signup-btn"
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? (
-                  <>
-                    <motion.div
-                      className="spinner-icon"
-                      animate={{ rotate: 360 }}
-                      transition={{
-                        duration: 1,
-                        repeat: Infinity,
-                        ease: "linear",
-                      }}
-                    >
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                      >
-                        <path d="M21 12a9 9 0 11-6.219-8.56"></path>
-                      </svg>
-                    </motion.div>
-                    Creating...
-                  </>
-                ) : (
-                  <>
-                    Create Account
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
-                      <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
-                  </>
+            <>
+              <>
+                {errorMessage && (
+                  <div className="signin-alert signin-alert-error">
+                    {errorMessage}
+                  </div>
                 )}
-              </motion.button>
-            </motion.form>
+              </>
+              <motion.form
+                className="signup-form"
+                onSubmit={handleSubmit}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                {fields.map(
+                  ([name, label, type, placeholder, autoComplete]) => (
+                    <div className="signup-form-group" key={name}>
+                      <label htmlFor={name}>{label}</label>
+                      <input
+                        type={type}
+                        id={name}
+                        autoComplete={autoComplete}
+                        placeholder={placeholder}
+                        value={formData[name]}
+                        onChange={updateField(name)}
+                        required
+                        minLength={name === "password" ? 8 : undefined}
+                      />
+                    </div>
+                  ),
+                )}
+                <motion.button
+                  type="submit"
+                  className="signup-btn"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Creating..." : "Create Account"}
+                </motion.button>
+              </motion.form>
+            </>
           )}
           <motion.p
             className="signup-footer-text"
