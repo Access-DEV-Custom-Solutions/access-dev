@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -90,25 +90,18 @@ function AnimatedRoutes() {
 }
 
 function App() {
-  const [theme, setTheme] = useState(() => {
-    const savedTheme = localStorage.getItem("theme");
-    return savedTheme || "light";
-  });
-
+  // Dark mode is switched off for now: always use the light theme, and clear
+  // any "dark" choice saved by visitors before the toggle was removed.
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-  };
+    document.documentElement.setAttribute("data-theme", "light");
+    localStorage.removeItem("theme");
+  }, []);
 
   return (
     <Router>
       <div className="app flex min-h-screen flex-col bg-[var(--color-bg)] text-[var(--color-text-secondary)]">
         <a className="skip-link" href="#main-content">Skip to content</a>
-        <Navbar theme={theme} toggleTheme={toggleTheme} />
+        <Navbar />
         <main id="main-content" className="flex-1" tabIndex="-1">
           <AnimatedRoutes />
         </main>

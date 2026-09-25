@@ -96,12 +96,6 @@ function Testimonials() {
 
   return (
     <section className="testimonials-section">
-      <div className="testimonials-bg">
-        <div className="testimonials-glow testimonials-glow-1"></div>
-        <div className="testimonials-glow testimonials-glow-2"></div>
-        <div className="testimonials-grid-pattern"></div>
-      </div>
-
       <div className="testimonials-container">
         <motion.div
           className="testimonials-header"

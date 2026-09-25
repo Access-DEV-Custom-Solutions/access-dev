@@ -1,15 +1,19 @@
 import { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { Menu, X, Sun, Moon, LayoutDashboard, LogOut } from "lucide-react";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { Menu, X, LayoutDashboard, LogOut, ArrowRight } from "lucide-react";
 import useHideOnScroll from "../../hooks/useHideOnScroll";
 
-function Navbar({ theme, toggleTheme }) {
+function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(() =>
     Boolean(localStorage.getItem("access_token")),
   );
   const hidden = useHideOnScroll({ topOffset: 120 });
+  // Only the homepage has a dark hero behind the bar; every other page is light,
+  // so the bar needs its own dark background there to stay readable.
+  const { pathname } = useLocation();
+  const isSolid = isScrolled || pathname !== "/";
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 12);
@@ -34,6 +38,7 @@ function Navbar({ theme, toggleTheme }) {
       className={[
         "adnav",
         isScrolled ? "adnav-scrolled" : "",
+        isSolid ? "adnav-solid" : "",
         hidden && isScrolled ? "adnav-hidden" : "",
         isMenuOpen ? "adnav-menu-open" : "",
       ]
@@ -69,7 +74,6 @@ function Navbar({ theme, toggleTheme }) {
           margin: 0 auto;
           display: flex;
           align-items: center;
-          justify-content: space-between;
           gap: 1.5rem;
           padding: 0.55rem 1.1rem;
           border-radius: 100px;
@@ -77,19 +81,19 @@ function Navbar({ theme, toggleTheme }) {
           background: transparent;
           transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
         }
-        .adnav-scrolled .adnav-inner {
-          background: rgba(8,11,20,0.72);
+        .adnav-solid .adnav-inner {
+          background: rgba(8,11,20,0.9);
           border-color: var(--adev-border);
           backdrop-filter: blur(14px);
           box-shadow: 0 12px 32px -12px rgba(0,0,0,0.5);
         }
 
         .adnav-logo { display: flex; align-items: center; }
-        .adnav-logo-img { height: 34px; width: auto; display: block; }
+        .adnav-logo-img { height: 46px; width: auto; display: block; }
 
         .adnav-links {
           display: flex; align-items: center; gap: 0.4rem;
-          list-style: none; margin: 0; padding: 0;
+          list-style: none; margin: 0 0 0 auto; padding: 0;
         }
         .adnav-links a {
           position: relative;
@@ -131,7 +135,8 @@ function Navbar({ theme, toggleTheme }) {
         }
         .adnav-btn-signin:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.28); }
 
-        .adnav-btn-create {
+        .adnav-btn-cta {
+          display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;
           font-size: 0.88rem; font-weight: 600;
           color: #fff;
           background: linear-gradient(90deg, var(--adev-blue), #3d63e8);
@@ -144,22 +149,9 @@ function Navbar({ theme, toggleTheme }) {
           box-shadow: 0 6px 18px -8px rgba(35,85,225,0.6);
           transition: transform 0.18s ease, box-shadow 0.18s ease;
         }
-        .adnav-btn-create:hover { transform: translateY(-1px); box-shadow: 0 10px 22px -8px rgba(35,85,225,0.75); }
+        .adnav-btn-cta:hover { transform: translateY(-1px); box-shadow: 0 10px 22px -8px rgba(35,85,225,0.75); }
 
         .adnav-actions { display: flex; align-items: center; gap: 0.6rem; }
-
-        .adnav-theme-toggle {
-          width: 2.2rem; height: 2.2rem;
-          display: flex; align-items: center; justify-content: center;
-          border-radius: 50%;
-          border: 1px solid var(--adev-border);
-          background: rgba(255,255,255,0.04);
-          color: var(--adev-text);
-          cursor: pointer;
-          flex-shrink: 0;
-          transition: background 0.18s ease, border-color 0.18s ease;
-        }
-        .adnav-theme-toggle:hover { background: rgba(255,255,255,0.09); }
 
         .adnav-hamburger {
           display: none;
@@ -182,6 +174,7 @@ function Navbar({ theme, toggleTheme }) {
         @media (max-width: 880px) {
           .adnav-links > a, .adnav-dashboard-link.desktop-only-link, .desktop-row { display: none; }
           .adnav-hamburger { display: flex; }
+          .adnav-actions { margin-left: auto; }
 
           .adnav-mobile-panel {
             display: block;
@@ -220,7 +213,7 @@ function Navbar({ theme, toggleTheme }) {
       <div className="adnav-inner">
         <Link to="/" className="adnav-logo" onClick={closeMenu}>
           <img
-            src="/without background.png"
+            src="/logo-light.png"
             alt="ACCESS DEV"
             className="adnav-logo-img"
           />
@@ -256,26 +249,12 @@ function Navbar({ theme, toggleTheme }) {
                   Sign Out
                 </button>
               </>
-            ) : (
-              <>
-                <Link to="/signin" className="adnav-btn-signin">
-                  Sign In
-                </Link>
-                <Link to="/signup" className="adnav-btn-create">
-                  Create Account
-                </Link>
-              </>
-            )}
+            ) : null}
+            <Link to="/contact" className="adnav-btn-cta">
+              Start a Project
+              <ArrowRight size={15} />
+            </Link>
           </div>
-
-          <button
-            className="adnav-theme-toggle"
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            aria-pressed={theme === "dark"}
-          >
-            {theme === "light" ? <Moon size={16} /> : <Sun size={16} />}
-          </button>
 
           <button
             className="adnav-hamburger"
@@ -309,24 +288,11 @@ function Navbar({ theme, toggleTheme }) {
           )}
         </div>
         <div className="adnav-mobile-actions">
-          {!isLoggedIn ? (
-            <>
-              <Link
-                to="/signin"
-                className="adnav-btn-signin"
-                onClick={closeMenu}
-              >
-                Sign In
-              </Link>
-              <Link
-                to="/signup"
-                className="adnav-btn-create"
-                onClick={closeMenu}
-              >
-                Create Account
-              </Link>
-            </>
-          ) : (
+          <Link to="/contact" className="adnav-btn-cta" onClick={closeMenu}>
+            Start a Project
+            <ArrowRight size={15} />
+          </Link>
+          {isLoggedIn && (
             <button className="adnav-btn-signin" onClick={signOut}>
               <LogOut
                 size={14}
