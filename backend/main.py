@@ -1,5 +1,5 @@
 import os
-from fastapi import FastAPI, HTTPException
+from fastapi import BackgroundTasks, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 from sqlmodel import Field, Session, SQLModel, create_engine, select
@@ -7,6 +7,7 @@ from sqlalchemy.exc import IntegrityError
 from datetime import datetime, timedelta, timezone
 from typing import Optional
 import jwt
+import httpx
 import base64
 import hashlib
 import hmac
@@ -48,6 +49,13 @@ CONNECTION_STRING = os.environ.get("DB_URL")
 JWT_SECRET = os.environ.get("JWT_SECRET")
 JWT_ALGORITHM = "HS256"
 JWT_EXPIRY_DAYS = 7
+
+WHATSAPP_PHONE_NUMBER_ID = os.environ.get("WHATSAPP_PHONE_NUMBER_ID")
+WHATSAPP_ACCESS_TOKEN = os.environ.get("WHATSAPP_ACCESS_TOKEN")
+# Comma-separated team numbers (country code, no "+") that receive contact form alerts
+WHATSAPP_NOTIFY_NUMBERS = [
+    number.strip() for number in os.environ.get("WHATSAPP_NOTIFY_NUMBERS", "").split(",") if number.strip()
+]
 
 app = FastAPI()
 
@@ -94,6 +102,41 @@ def create_jwt(email: str) -> str:
     }
     return jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
 
+def send_whatsapp(to: str, body: str):
+    url = f"https://graph.facebook.com/v25.0/{WHATSAPP_PHONE_NUMBER_ID}/messages"
+    headers = {
+        "Authorization": f"Bearer {WHATSAPP_ACCESS_TOKEN}",
+        "Content-Type": "application/json",
+    }
+    payload = {
+        "messaging_product": "whatsapp",
+        "to": to,
+        "type": "text",
+        "text": {
+            "body": body
+        },
+    }
+
+    try:
+        response = httpx.post(url, headers=headers, json=payload, timeout=10)
+        if not response.is_success:
+            print(f"WhatsApp send to {to} failed ({response.status_code}): {response.text}")
+    except httpx.HTTPError as e:
+        print(f"WhatsApp send to {to} failed: {e}")
+
+
+def notify_team_of_request(userRequest: UserRequest):
+    body = (
+        "New contact request\n\n"
+        f"Name: {userRequest.fullname}\n"
+        f"Email: {userRequest.email}\n"
+        f"Service: {userRequest.service}\n\n"
+        f"{userRequest.details}"
+    )
+    for number in WHATSAPP_NOTIFY_NUMBERS:
+        send_whatsapp(number, body)
+
+
 @app.get("/users")
 def users():
     with Session(engine) as session:
@@ -126,7 +169,7 @@ def add_user(user: UserCreate):
         return {"fullname": new_user.fullname, "email": new_user.email, "whatsapp_number": new_user.whatsapp_number}
     
 @app.post("/requests")
-def add_request(userRequest: UserRequest):
+def add_request(userRequest: UserRequest, background_tasks: BackgroundTasks):
     with Session(engine) as session:
         try:
             request = Requests(
@@ -137,6 +180,8 @@ def add_request(userRequest: UserRequest):
             session.add(request)
             session.commit()
             session.refresh(request)
+
+            background_tasks.add_task(notify_team_of_request, userRequest)
 
             return {"message": "Request submitted successfully"}
 
@@ -171,3 +216,4 @@ def login(payload: LoginRequest):
 
         token = create_jwt(existing_user.email)
         return {"token": token, "email": existing_user.email, "fullname": existing_user.fullname}
+
