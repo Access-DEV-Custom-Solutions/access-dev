@@ -1,6 +1,4 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
 
 const FEATURED_PROJECTS = [
   {
@@ -37,7 +35,7 @@ const FEATURED_PROJECTS = [
 
 function FeaturedProjects() {
   return (
-    <section className="featured-section">
+    <section id="work" className="featured-section">
       <div className="featured-container">
         <motion.div
           className="section-header centered"
@@ -79,13 +77,6 @@ function FeaturedProjects() {
               </div>
             </motion.article>
           ))}
-        </div>
-
-        <div className="featured-footer">
-          <Link to="/projects" className="btn btn-outline-dark">
-            View All Projects
-            <ArrowRight size={17} />
-          </Link>
         </div>
       </div>
     </section>

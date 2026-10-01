@@ -11,7 +11,7 @@ function Footer() {
           {/* Brand */}
           <div className="footer-brand">
           <Link to="/" className="footer-logo">
-  <img src="/logo-light.png" alt="ACCESS DEV" className="footer-logo-img" />
+  <img src="/dark_bg-removebg-preview.png" alt="ACCESS DEV" className="footer-logo-img" />
 </Link>
             <p className="footer-tagline">
               Accessing the future, one line of code at a time.
@@ -23,7 +23,6 @@ function Footer() {
           <div className="footer-links">
             <h4 className="footer-heading">Quick Links</h4>
             <Link to="/">Home</Link>
-            <Link to="/projects">Projects</Link>
             <Link to="/about">About</Link>
             <Link to="/contact">Contact</Link>
           </div>
@@ -35,6 +34,8 @@ function Footer() {
             <Link to="/services/web">Web Development</Link>
             <Link to="/services/redesign">Web Redesign</Link>
             <Link to="/services/ai">AI Solutions</Link>
+            <Link to="/contact">IT Support &amp; Repairs</Link>
+            <Link to="/contact">Robotics</Link>
           </div>
 
           {/* Contact */}

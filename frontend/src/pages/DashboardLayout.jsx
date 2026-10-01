@@ -72,7 +72,7 @@ function DashboardLayout({ children }) {
           </svg>
         </button>
         <Link to="/dashboard" className="dash-mobile-logo">
-          <img src="/without background.png" alt="ACCESS DEV" className="dash-logo-img" />
+          <img src="/access_logo-removebg-preview.png" alt="ACCESS DEV" className="dash-logo-img" />
         </Link>
       </div>
 
@@ -85,7 +85,7 @@ function DashboardLayout({ children }) {
       >
         <div className="dash-sidebar-header">
           <Link to="/dashboard" className="dash-sidebar-logo">
-            <img src="/without background.png" alt="ACCESS DEV" className="dash-logo-img" />
+            <img src="/access_logo-removebg-preview.png" alt="ACCESS DEV" className="dash-logo-img" />
           </Link>
         </div>
 

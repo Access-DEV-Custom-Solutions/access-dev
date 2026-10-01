@@ -9,7 +9,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home";
-import Projects from "./pages/Projects";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import SignUp from "./pages/SignUp";
@@ -48,14 +47,6 @@ function AnimatedRoutes() {
           element={
             <PageTransition>
               <Home />
-            </PageTransition>
-          }
-        />
-        <Route
-          path="/projects"
-          element={
-            <PageTransition>
-              <Projects />
             </PageTransition>
           }
         />
