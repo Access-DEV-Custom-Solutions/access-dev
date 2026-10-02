@@ -57,7 +57,7 @@ function SignIn() {
             transition={{ duration: 0.5, delay: 0.2, type: "spring" }}
           >
             <img
-              src="/without background.png"
+              src="/access_logo-removebg-preview.png"
               alt="ACCESS DEV"
               className="signin-logo-img"
             />

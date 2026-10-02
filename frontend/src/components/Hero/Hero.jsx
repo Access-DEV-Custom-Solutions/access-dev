@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Starfield from "./Starfield";
+import HeroVisual from "./HeroVisual";
 
 const ROTATING_WORDS = ["mobile app", "website", "AI solution", "platform"];
 const WORD_INTERVAL = 2600; // ms each word stays on screen
@@ -32,40 +33,6 @@ function RotatingWord() {
         </motion.span>
       </AnimatePresence>
     </span>
-  );
-}
-
-function HeroVisual() {
-  return (
-    <motion.div
-      className="hero-visual"
-      initial={{ opacity: 0, y: 30, scale: 0.97 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-    >
-      <div className="hero-visual-frame">
-        <img
-          src="/images/services/webdev3.png"
-          alt="A website, tablet app and mobile app connected to cloud services and live data"
-        />
-      </div>
-
-      <span className="hero-visual-tag" aria-hidden="true">
-        Web · Mobile · AI
-      </span>
-
-      <div className="hero-visual-chip">
-        <div className="avatar-stack">
-          <img src="/images/team/malvin.png" alt="" />
-          <img src="/images/team/tawanda.jpg" alt="" />
-          <img src="/images/team/Nobuhle.jpeg" alt="" />
-        </div>
-        <div>
-          <strong>15+ projects</strong>
-          <span>shipped across Zimbabwe</span>
-        </div>
-      </div>
-    </motion.div>
   );
 }
 
@@ -104,9 +71,9 @@ function Hero() {
               Start Your Project
               <ArrowRight size={18} />
             </Link>
-            <Link to="/projects" className="btn hero-btn-secondary">
+            <a href="#work" className="btn hero-btn-secondary">
               View Our Work
-            </Link>
+            </a>
           </div>
         </motion.div>
 

@@ -61,7 +61,7 @@ function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.1, type: "spring" }}
           >
-            <img src="/without background.png" alt="ACCESS DEV" className="about-logo-img" />
+            <img src="/access_logo-removebg-preview.png" alt="ACCESS DEV" className="about-logo-img" />
             <div className="about-logo-glow"></div>
           </motion.div>
           <motion.p className="about-subtitle"
